@@ -46,8 +46,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5r
 .proof{text-align:center;padding:1rem 2rem 4rem;max-width:900px;margin:0 auto}
 .proof-label{font-size:11px;color:#555;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.5rem}
 .proof-logos{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap}
-.proof-logo{font-size:14px;font-weight:700;color:#333;letter-spacing:-.01em}
-.section{padding:4rem 2rem;max-width:900px;margin:0 auto}
+.proof-logo{font-size:14px;font-weight:700;color:#333}
+.lsection{padding:4rem 2rem;max-width:900px;margin:0 auto}
 .section-tag{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#4ade80;margin-bottom:1rem;text-align:center}
 .section-title{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;text-align:center;letter-spacing:-.02em;margin-bottom:.75rem}
 .section-sub{font-size:15px;color:#666;text-align:center;margin-bottom:3rem;line-height:1.7}
@@ -60,9 +60,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5r
 .compare-card{border-radius:14px;padding:1.5rem}
 .compare-card.bad{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.15)}
 .compare-card.good{background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.2)}
-.compare-head{font-size:14px;font-weight:700;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.compare-head{font-size:14px;font-weight:700;margin-bottom:1rem}
 .compare-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#888;margin-bottom:8px;line-height:1.5}
-.x{color:#ef4444;font-size:15px}.ch{color:#4ade80;font-size:15px}
+.x{color:#ef4444}.ch{color:#4ade80}
 .pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem}
 .price-card{border-radius:16px;padding:1.75rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
 .price-card.featured{border-color:rgba(74,222,128,.4);background:rgba(74,222,128,.06);position:relative}
@@ -75,23 +75,18 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5r
 .price-btn:hover{background:rgba(255,255,255,.07)}
 .price-card.featured .price-btn{background:#4ade80;color:#0d0d0d;border:none}
 .price-card.featured .price-btn:hover{opacity:.85}
-.faq{max-width:620px;margin:0 auto}
 .faq-item{border-bottom:1px solid rgba(255,255,255,.07);padding:1.25rem 0}
 .faq-q{font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
-.faq-q .arrow{color:#555;transition:transform .2s;font-size:16px}
 .faq-a{font-size:13px;color:#666;line-height:1.7;margin-top:.75rem;display:none}
 .faq-item.open .faq-a{display:block}
+.arrow{color:#555;transition:transform .2s}
 .faq-item.open .arrow{transform:rotate(180deg)}
 .bottom-cta{text-align:center;padding:5rem 2rem;border-top:1px solid rgba(255,255,255,.06)}
 .bottom-cta h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;letter-spacing:-.03em;margin-bottom:1rem}
 .bottom-cta p{font-size:15px;color:#666;margin-bottom:2rem}
 footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px solid rgba(255,255,255,.05)}
-.live-badge{position:fixed;bottom:1.5rem;right:1.5rem;background:rgba(20,20,20,.95);border:1px solid rgba(74,222,128,.3);border-radius:12px;padding:10px 16px;font-size:13px;color:#f0ede6;display:flex;align-items:center;gap:8px;z-index:200;backdrop-filter:blur(8px)}
-.live-dot{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:pulse 1.5s infinite}
-
-/* ---- NDA GENERATOR (embedded, hidden by default) ---- */
 #appView{display:none;min-height:calc(100vh - 60px)}
-.app{display:grid;grid-template-columns:420px 1fr;min-height:calc(100vh - 60px)}
+.app{display:grid;grid-template-columns:400px 1fr;min-height:calc(100vh - 60px)}
 .form-panel{background:#111;border-right:1px solid rgba(255,255,255,.08);padding:2rem;overflow-y:auto;max-height:calc(100vh - 60px)}
 .panel-title{font-size:18px;font-weight:600;margin-bottom:4px}
 .panel-sub{font-size:13px;color:#666;margin-bottom:1.5rem;line-height:1.5}
@@ -100,7 +95,7 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
 .field{margin-bottom:12px}
 .field label{display:block;font-size:13px;font-weight:500;color:#aaa;margin-bottom:5px}
 .field input,.field select,.field textarea{width:100%;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 12px;font-size:13px;color:#f0ede6;background:rgba(255,255,255,.05);outline:none;transition:border .15s}
-.field input:focus,.field select,.field select:focus,.field textarea:focus{border-color:rgba(74,222,128,.4)}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(74,222,128,.4)}
 .field select option{background:#1a1a1a;color:#f0ede6}
 .field textarea{resize:vertical;min-height:72px;line-height:1.5}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -110,25 +105,34 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
 .gen-btn{width:100%;padding:12px;background:#4ade80;color:#0d0d0d;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;display:flex;align-items:center;justify-content:center;gap:8px}
 .gen-btn:hover{opacity:.85}
 .gen-btn:disabled{opacity:.5;cursor:not-allowed}
-.back-btn{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:#888;font-size:13px;cursor:pointer;margin-bottom:1.5rem;padding:0}
+.back-btn{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:#666;font-size:13px;cursor:pointer;margin-bottom:1.5rem;padding:0}
 .back-btn:hover{color:#f0ede6}
-.output-panel{padding:2rem;overflow-y:auto;max-height:calc(100vh - 60px);background:#0d0d0d}
+.output-panel{padding:2rem;overflow-y:auto;max-height:calc(100vh - 60px);background:#0d0d0d;position:relative}
 .empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:#555;text-align:center;gap:12px;min-height:400px}
 .empty-icon{font-size:48px;opacity:.3}
-.empty-title{font-size:16px;font-weight:500}
-.empty-sub{font-size:13px;max-width:280px;line-height:1.6}
-.output-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem}
+.output-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:8px}
 .output-title{font-size:16px;font-weight:600}
 .output-actions{display:flex;gap:8px}
 .ob-sec{padding:7px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px;font-size:12px;font-weight:500;background:transparent;cursor:pointer;color:#f0ede6;transition:background .15s}
 .ob-sec:hover{background:rgba(255,255,255,.07)}
 .ob-pri{padding:7px 14px;border:none;border-radius:8px;font-size:12px;font-weight:600;background:#4ade80;cursor:pointer;color:#0d0d0d;transition:opacity .15s}
 .ob-pri:hover{opacity:.8}
-.doc-wrapper{background:#1a1a1a;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:2.5rem 3rem;max-width:780px;margin:0 auto;line-height:1.8;font-size:14px;color:#e0ddd6}
+.doc-wrapper{background:#1a1a1a;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:2.5rem 3rem;max-width:780px;margin:0 auto;line-height:1.8;font-size:14px;color:#e0ddd6;position:relative}
 .doc-wrapper h1{font-size:20px;font-weight:700;text-align:center;margin-bottom:8px;color:#f0ede6}
 .doc-wrapper h2{font-size:13px;font-weight:700;margin:20px 0 6px;text-transform:uppercase;letter-spacing:.04em;color:#4ade80}
 .doc-wrapper p{margin-bottom:10px;color:#bbb}
 .doc-wrapper .meta{text-align:center;font-size:13px;color:#555;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.1)}
+.blur-overlay{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(to bottom,transparent,#1a1a1a 60%);border-radius:0 0 12px 12px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:2.5rem;pointer-events:none}
+.paywall-box{background:rgba(13,13,13,.95);border:1px solid rgba(74,222,128,.3);border-radius:16px;padding:1.75rem 2rem;text-align:center;max-width:360px;width:90%;pointer-events:all;backdrop-filter:blur(4px)}
+.paywall-title{font-size:16px;font-weight:700;margin-bottom:.4rem}
+.paywall-sub{font-size:13px;color:#888;margin-bottom:1.25rem;line-height:1.5}
+.paywall-price{font-size:2rem;font-weight:800;color:#4ade80;margin-bottom:.25rem}
+.paywall-period{font-size:12px;color:#555;margin-bottom:1.25rem}
+.paywall-features{display:flex;flex-direction:column;gap:6px;margin-bottom:1.5rem;text-align:left}
+.paywall-feature{font-size:12px;color:#888;display:flex;align-items:center;gap:6px}
+.unlock-btn{width:100%;padding:13px;background:#4ade80;color:#0d0d0d;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.unlock-btn:hover{opacity:.85}
+.secure-note{font-size:11px;color:#555;margin-top:8px}
 .loading-state{display:flex;flex-direction:column;align-items:center;justify-content:center;height:60vh;gap:16px}
 .spinner{width:36px;height:36px;border:3px solid rgba(255,255,255,.1);border-top-color:#4ade80;border-radius:50%;animation:spin .7s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
@@ -139,6 +143,8 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
 .sig-block{display:flex;flex-direction:column;gap:4px}
 .sig-line{border-bottom:1px solid #555;height:32px;margin-bottom:4px}
 .sig-label{font-size:12px;color:#555}
+.live-badge{position:fixed;bottom:1.5rem;right:1.5rem;background:rgba(20,20,20,.95);border:1px solid rgba(74,222,128,.3);border-radius:12px;padding:10px 16px;font-size:13px;color:#f0ede6;display:flex;align-items:center;gap:8px;z-index:200;backdrop-filter:blur(8px)}
+.live-dot{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:pulse 1.5s infinite}
 @media(max-width:640px){
   .steps,.compare,.pricing{grid-template-columns:1fr}
   .signup-row{flex-direction:column}
@@ -154,7 +160,7 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
   <button class="nav-cta" id="navBtn" onclick="showApp()">Try free — Generate NDA</button>
 </nav>
 
-<!-- ===== LANDING PAGE ===== -->
+<!-- ===== LANDING ===== -->
 <div id="landingView">
 <section style="padding-top:1rem">
   <div class="hero">
@@ -168,14 +174,14 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
     <div class="signup-box" id="signupBox">
       <div style="font-size:14px;font-weight:600;margin-bottom:12px;color:#f0ede6">Get early access + 40% off for life</div>
       <div class="signup-row">
-        <input class="signup-input" id="emailInput" type="email" placeholder="Enter your email address" />
+        <input class="signup-input" id="emailInput" type="email" placeholder="Enter your email address"/>
         <button class="signup-btn" id="signupBtn" onclick="joinWaitlist('emailInput','signupBtn')">Join waitlist</button>
       </div>
       <div class="privacy-note">No credit card. No spam. We'll notify you at launch.</div>
     </div>
     <div class="success-box" id="successBox">
       <p>🎉 You're on the list!</p>
-      <span>You're #<span id="positionNum">—</span> on the waitlist. We'll email you at launch.</span>
+      <span>You're #<span id="positionNum">—</span> on the waitlist.</span>
       <button class="try-btn" onclick="showApp()">Try the NDA generator now →</button>
     </div>
     <div class="counter-row">
@@ -198,25 +204,25 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
 </section>
 
 <section style="border-top:1px solid rgba(255,255,255,.06)">
-  <div class="section">
+  <div class="lsection">
     <div class="section-tag">How it works</div>
     <div class="section-title">From zero to signed in minutes</div>
-    <div class="section-sub">Three steps. No lawyer needed. No template wrangling.</div>
+    <div class="section-sub">Three steps. No lawyer needed.</div>
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><h3>Fill in your details</h3><p>Enter the parties, purpose, jurisdiction, and any specific clauses you need. Takes about 90 seconds.</p></div>
-      <div class="step"><div class="step-num">2</div><h3>Claude drafts it</h3><p>Our AI generates a professionally structured, jurisdiction-appropriate document in under 30 seconds.</p></div>
-      <div class="step"><div class="step-num">3</div><h3>Download & sign</h3><p>Export as PDF. Share with the other party. Done. Your legal protection is in place.</p></div>
+      <div class="step"><div class="step-num">1</div><h3>Fill in your details</h3><p>Enter parties, purpose, jurisdiction, and clauses. Takes 90 seconds.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Claude drafts it</h3><p>AI generates a professionally structured, jurisdiction-appropriate document in under 30 seconds.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Download & sign</h3><p>Export as PDF. Share with the other party. Your legal protection is in place.</p></div>
     </div>
   </div>
 </section>
 
 <section style="border-top:1px solid rgba(255,255,255,.06)">
-  <div class="section">
-    <div class="section-tag">Why LegalAI</div>
+  <div class="lsection">
+    <div class="section-tag">Why LegalGen</div>
     <div class="section-title">Stop overpaying for legal docs</div>
     <div class="compare">
       <div class="compare-card bad">
-        <div class="compare-head"><span style="color:#ef4444">✕</span> Traditional lawyer</div>
+        <div class="compare-head"><span class="x">✕</span> Traditional lawyer</div>
         <div class="compare-item"><span class="x">✕</span> €200–500 per document</div>
         <div class="compare-item"><span class="x">✕</span> 3–5 days turnaround</div>
         <div class="compare-item"><span class="x">✕</span> Back-and-forth emails</div>
@@ -224,19 +230,19 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
         <div class="compare-item"><span class="x">✕</span> Not available at midnight</div>
       </div>
       <div class="compare-card good">
-        <div class="compare-head"><span style="color:#4ade80">✓</span> LegalAI</div>
-        <div class="compare-item"><span class="ch">✓</span> €29/month, unlimited docs</div>
+        <div class="compare-head"><span class="ch">✓</span> LegalGen</div>
+        <div class="compare-item"><span class="ch">✓</span> €29/month unlimited docs</div>
         <div class="compare-item"><span class="ch">✓</span> Ready in 30 seconds</div>
-        <div class="compare-item"><span class="ch">✓</span> Fully customized to your needs</div>
-        <div class="compare-item"><span class="ch">✓</span> Regenerate as many times as you like</div>
-        <div class="compare-item"><span class="ch">✓</span> Available 24/7, anywhere</div>
+        <div class="compare-item"><span class="ch">✓</span> Fully customized</div>
+        <div class="compare-item"><span class="ch">✓</span> Regenerate anytime</div>
+        <div class="compare-item"><span class="ch">✓</span> Available 24/7</div>
       </div>
     </div>
   </div>
 </section>
 
 <section style="border-top:1px solid rgba(255,255,255,.06)">
-  <div class="section">
+  <div class="lsection">
     <div class="section-tag">Pricing</div>
     <div class="section-title">Simple, honest pricing</div>
     <div class="section-sub">Early waitlist members get 40% off for life.</div>
@@ -244,10 +250,10 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
       <div class="price-card">
         <div class="price-name">Starter</div>
         <div class="price-amount">Free</div>
-        <div class="price-period">forever</div>
-        <div class="price-feature"><span class="ch">✓</span> 3 documents/month</div>
-        <div class="price-feature"><span class="ch">✓</span> NDA only</div>
-        <div class="price-feature"><span class="ch">✓</span> Copy to clipboard</div>
+        <div class="price-period">preview only</div>
+        <div class="price-feature"><span class="ch">✓</span> Generate & preview NDA</div>
+        <div class="price-feature"><span class="ch">✓</span> See full structure</div>
+        <div class="price-feature" style="color:#555">✕ Copy or download</div>
         <button class="price-btn" onclick="showApp()">Try now →</button>
       </div>
       <div class="price-card featured">
@@ -260,7 +266,7 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
         <div class="price-feature"><span class="ch">✓</span> PDF export</div>
         <div class="price-feature"><span class="ch">✓</span> Document history</div>
         <div class="price-feature"><span class="ch">✓</span> Multi-jurisdiction</div>
-        <button class="price-btn" onclick="scrollToSignup()">Join waitlist →</button>
+        <button class="price-btn" onclick="goCheckout('pro')">Get Pro →</button>
       </div>
       <div class="price-card">
         <div class="price-name">Business</div>
@@ -270,48 +276,52 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
         <div class="price-feature"><span class="ch">✓</span> 5 team seats</div>
         <div class="price-feature"><span class="ch">✓</span> Custom branding</div>
         <div class="price-feature"><span class="ch">✓</span> Priority support</div>
-        <button class="price-btn" onclick="scrollToSignup()">Join waitlist</button>
+        <button class="price-btn" onclick="goCheckout('business')">Get Business</button>
       </div>
     </div>
   </div>
 </section>
 
 <section style="border-top:1px solid rgba(255,255,255,.06)">
-  <div class="section">
+  <div class="lsection">
     <div class="section-tag">FAQ</div>
     <div class="section-title">Common questions</div>
-    <div class="faq">
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are these documents legally valid? <span class="arrow">▾</span></div><div class="faq-a">LegalAI generates professionally structured documents based on established legal standards for your jurisdiction. For complex or high-stakes situations, we recommend having a qualified lawyer review the final document.</div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Which jurisdictions do you support? <span class="arrow">▾</span></div><div class="faq-a">We currently support Netherlands, Germany, UK, France, Belgium, Spain, and US (New York & California law). More jurisdictions are being added based on waitlist demand.</div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I edit the generated document? <span class="arrow">▾</span></div><div class="faq-a">Yes. Every document is fully editable after generation. You can copy the text and modify it in any word processor, or use our built-in editor (coming in Pro).</div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is my data private and secure? <span class="arrow">▾</span></div><div class="faq-a">We do not store the content of your documents on our servers. Each document is generated on-demand and is only accessible to you. We take data privacy seriously, especially given GDPR requirements.</div></div>
+    <div style="max-width:620px;margin:0 auto">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are these documents legally valid? <span class="arrow">▾</span></div><div class="faq-a">LegalGen generates professionally structured documents based on established legal standards. For complex situations, we recommend a qualified lawyer review the final document.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Which jurisdictions do you support? <span class="arrow">▾</span></div><div class="faq-a">Netherlands, Germany, UK, France, Belgium, Spain, and US (New York & California). More being added.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I edit the generated document? <span class="arrow">▾</span></div><div class="faq-a">Yes — copy the text and edit in any word processor, or use our built-in editor (coming in Pro).</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is my data private? <span class="arrow">▾</span></div><div class="faq-a">We don't store document content. Each document is generated on-demand, GDPR-compliant.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I cancel my subscription? <span class="arrow">▾</span></div><div class="faq-a">Cancel anytime from your billing portal — no questions asked. You keep access until the end of your billing period.</div></div>
     </div>
   </div>
 </section>
 
-<div class="bottom-cta" id="bottomCta">
+<div class="bottom-cta">
   <h2>Stop paying lawyers<br>for simple documents.</h2>
   <p>Join the waitlist and get 40% off for life when we launch.</p>
   <div class="signup-box" style="margin:0 auto">
     <div class="signup-row">
-      <input class="signup-input" id="emailInput2" type="email" placeholder="Enter your email address" />
+      <input class="signup-input" id="emailInput2" type="email" placeholder="Your email address"/>
       <button class="signup-btn" id="signupBtn2" onclick="joinWaitlist('emailInput2','signupBtn2')">Join waitlist</button>
     </div>
     <div class="privacy-note">No credit card. No spam. Unsubscribe anytime.</div>
   </div>
+  <div style="margin-top:2rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <button class="btn-main" onclick="goCheckout('pro')">Get Pro — €29/mo</button>
+    <button class="btn-ghost" onclick="goCheckout('business')">Get Business — €99/mo</button>
+  </div>
 </div>
 
-<footer>© 2026 LegalGen · legalgen.pro · Not a law firm · Documents are AI-generated drafts · Always consult a qualified lawyer for complex legal matters</footer>
-</div><!-- end landingView -->
+<footer>© 2026 LegalGen · legalgen.pro · Not a law firm · AI-generated drafts · Always consult a qualified lawyer for complex matters</footer>
+</div>
 
-<!-- ===== NDA GENERATOR APP ===== -->
+<!-- ===== NDA APP ===== -->
 <div id="appView">
   <div class="app">
     <div class="form-panel">
       <button class="back-btn" onclick="showLanding()">← Back to home</button>
       <div class="panel-title">Generate your NDA</div>
-      <div class="panel-sub">Fill in the details and Claude AI will draft a professional NDA in seconds.</div>
-
+      <div class="panel-sub">Fill in the details and Claude AI drafts a professional NDA in seconds.</div>
       <div class="sec"><div class="sec-head">Disclosing Party</div>
         <div class="field"><label>Full name or company</label><input id="p1name" placeholder="e.g. Acme Corp or John Smith"/></div>
         <div class="row2">
@@ -319,7 +329,6 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
           <div class="field"><label>Country</label><select id="p1country"><option>Netherlands</option><option>Germany</option><option>United Kingdom</option><option>United States</option><option>France</option><option>Belgium</option><option>Spain</option><option>Other EU</option></select></div>
         </div>
       </div>
-
       <div class="sec"><div class="sec-head">Receiving Party</div>
         <div class="field"><label>Full name or company</label><input id="p2name" placeholder="e.g. Beta Startup BV or Jane Doe"/></div>
         <div class="row2">
@@ -327,16 +336,14 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
           <div class="field"><label>Country</label><select id="p2country"><option>Netherlands</option><option>Germany</option><option>United Kingdom</option><option>United States</option><option>France</option><option>Belgium</option><option>Spain</option><option>Other EU</option></select></div>
         </div>
       </div>
-
       <div class="sec"><div class="sec-head">Agreement Details</div>
-        <div class="field"><label>Purpose of disclosure</label><textarea id="purpose" placeholder="e.g. Evaluating a potential SaaS partnership"></textarea></div>
+        <div class="field"><label>Purpose</label><textarea id="purpose" placeholder="e.g. Evaluating a potential SaaS partnership"></textarea></div>
         <div class="row2">
           <div class="field"><label>NDA type</label><select id="ndatype"><option>Mutual (both parties)</option><option>One-way (disclosing only)</option></select></div>
           <div class="field"><label>Duration</label><select id="duration"><option>1 year</option><option>2 years</option><option>3 years</option><option>5 years</option><option>Indefinite</option></select></div>
         </div>
         <div class="field"><label>Governing law</label><select id="govlaw"><option>Dutch law (Netherlands)</option><option>German law</option><option>English law (UK)</option><option>New York law (USA)</option><option>California law (USA)</option><option>French law</option><option>Belgian law</option></select></div>
       </div>
-
       <div class="sec"><div class="sec-head">Confidential information includes</div>
         <div class="check-group">
           <label class="check-item"><input type="checkbox" id="c1" checked><span>Trade secrets & proprietary technology</span></label>
@@ -347,7 +354,6 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
           <label class="check-item"><input type="checkbox" id="c6"><span>Personal data (GDPR-sensitive)</span></label>
         </div>
       </div>
-
       <div class="sec"><div class="sec-head">Optional clauses</div>
         <div class="check-group">
           <label class="check-item"><input type="checkbox" id="x1"><span>Non-solicitation of employees</span></label>
@@ -356,33 +362,45 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
           <label class="check-item"><input type="checkbox" id="x4"><span>Liquidated damages clause</span></label>
         </div>
       </div>
-
       <button class="gen-btn" id="genBtn" onclick="generateNDA()">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
         Generate NDA with Claude AI
       </button>
     </div>
-
     <div class="output-panel" id="outputPanel">
       <div class="empty-state">
         <div class="empty-icon">📄</div>
-        <div class="empty-title">Your NDA will appear here</div>
-        <div class="empty-sub">Fill in the form and click Generate. Claude will create a tailored NDA in seconds.</div>
+        <div style="font-size:16px;font-weight:500">Your NDA will appear here</div>
+        <div style="font-size:13px;max-width:280px;line-height:1.6">Fill in the form and click Generate. Claude will create a tailored NDA in seconds.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- LIVE BADGE -->
-<div class="live-badge" id="liveBadge">
+<div class="live-badge">
   <div class="live-dot"></div>
   <span><strong id="badgeCount">0</strong> on waitlist</span>
 </div>
 
 <script>
-const STORAGE_KEY = 'legalgen-waitlist';
+// ============================================================
+// LEMON SQUEEZY CHECKOUT URLS
+// ============================================================
+const LS_URLS = {
+  pro:      'https://matrixlab.lemonsqueezy.com/checkout/buy/e967fcd7-0281-4229-ba58-b130040e486e',
+  business: 'https://matrixlab.lemonsqueezy.com/checkout/buy/5627f5ea-5d1e-4181-9c88-b075e89b7900'
+};
 
-// ---- NAVIGATION ----
+// Single function used by EVERY payment button in the app
+function goCheckout(plan) {
+  const url = plan === 'business' ? LS_URLS.business : LS_URLS.pro;
+  window.open(url, '_blank');
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
 function showApp(){
   document.getElementById('landingView').style.display='none';
   document.getElementById('appView').style.display='block';
@@ -398,43 +416,42 @@ function showLanding(){
   window.scrollTo(0,0);
 }
 
-// ---- WAITLIST ----
-async function loadData(){
-  try{ const r=await window.storage.get(STORAGE_KEY,true); return r?JSON.parse(r.value):{count:0,emails:[]}; }
-  catch(e){ return{count:0,emails:[]}; }
-}
-async function saveData(d){ try{await window.storage.set(STORAGE_KEY,JSON.stringify(d),true);}catch(e){} }
-function updateCounter(n){ document.getElementById('counterDisplay').textContent=n; document.getElementById('badgeCount').textContent=n; }
+// ============================================================
+// WAITLIST
+// ============================================================
+const STORAGE_KEY='legalgen-waitlist';
+async function loadData(){try{const r=await window.storage.get(STORAGE_KEY,true);return r?JSON.parse(r.value):{count:0,emails:[]}}catch(e){return{count:0,emails:[]}}}
+async function saveData(d){try{await window.storage.set(STORAGE_KEY,JSON.stringify(d),true)}catch(e){}}
+function updateCounter(n){document.getElementById('counterDisplay').textContent=n;document.getElementById('badgeCount').textContent=n}
+async function init(){const d=await loadData();updateCounter(d.count)}
 
-async function init(){ const d=await loadData(); updateCounter(d.count); }
-
-async function joinWaitlist(inputId, btnId){
-  const email=document.getElementById(inputId).value.trim();
-  if(!email||!email.includes('@')){ alert('Please enter a valid email.'); return; }
-  const btn=document.getElementById(btnId);
-  btn.disabled=true; btn.textContent='Joining...';
+async function joinWaitlist(iid,bid){
+  const email=document.getElementById(iid).value.trim();
+  if(!email||!email.includes('@')){alert('Please enter a valid email.');return}
+  const btn=document.getElementById(bid);btn.disabled=true;btn.textContent='Joining...';
   const d=await loadData();
-  if(d.emails.includes(email)){ alert("You're already on the waitlist!"); btn.disabled=false; btn.textContent='Join waitlist'; return; }
-  d.emails.push(email); d.count=d.emails.length;
-  await saveData(d); updateCounter(d.count);
-  document.getElementById(inputId).value='';
+  if(d.emails.includes(email)){alert("You're already on the waitlist!");btn.disabled=false;btn.textContent='Join waitlist';return}
+  d.emails.push(email);d.count=d.emails.length;
+  await saveData(d);updateCounter(d.count);
+  document.getElementById(iid).value='';
   document.getElementById('successBox').style.display='block';
   document.getElementById('positionNum').textContent=d.count;
   document.getElementById('signupBox').style.display='none';
   btn.textContent='✓ You\'re in!';
-  setTimeout(()=>{ btn.disabled=false; btn.textContent='Join waitlist'; },3000);
+  setTimeout(()=>{btn.disabled=false;btn.textContent='Join waitlist'},3000);
 }
+function scrollToSignup(){document.getElementById('signupBox').scrollIntoView({behavior:'smooth',block:'center'})}
+function toggleFaq(el){el.parentElement.classList.toggle('open')}
 
-function scrollToSignup(){ document.getElementById('signupBox').scrollIntoView({behavior:'smooth',block:'center'}); }
-function toggleFaq(el){ el.parentElement.classList.toggle('open'); }
-
-// ---- NDA GENERATOR ----
-function gv(id){ return document.getElementById(id)?.value?.trim()||''; }
-function gc(id){ return document.getElementById(id)?.checked; }
+// ============================================================
+// NDA GENERATOR
+// ============================================================
+function gv(id){return document.getElementById(id)?.value?.trim()||''}
+function gc(id){return document.getElementById(id)?.checked}
 
 async function generateNDA(){
   const p1=gv('p1name'),p2=gv('p2name'),purpose=gv('purpose');
-  if(!p1||!p2||!purpose){ alert('Please fill in both party names and the purpose.'); return; }
+  if(!p1||!p2||!purpose){alert('Please fill in both party names and the purpose.');return}
   const btn=document.getElementById('genBtn');
   btn.disabled=true;
   btn.innerHTML='<div style="width:15px;height:15px;border:2px solid rgba(0,0,0,.3);border-top-color:#0d0d0d;border-radius:50%;animation:spin .7s linear infinite"></div> Generating...';
@@ -446,7 +463,7 @@ async function generateNDA(){
   if(gc('c5'))conf.push('marketing strategies and pricing');
   if(gc('c6'))conf.push('personal data subject to GDPR');
   if(gc('x1'))extra.push('a non-solicitation of employees clause');
-  if(gc('x2'))extra.push('a requirement for return or destruction of confidential materials');
+  if(gc('x2'))extra.push('return or destruction of confidential materials');
   if(gc('x3'))extra.push('an injunctive relief clause');
   if(gc('x4'))extra.push('a liquidated damages clause');
   const prompt=`You are a senior corporate lawyer. Draft a complete, professional Non-Disclosure Agreement:
@@ -454,7 +471,7 @@ PARTIES: "${p1}" (${gv('p1type')}, ${gv('p1country')}) and "${p2}" (${gv('p2type
 TYPE: ${gv('ndatype')} | PURPOSE: ${purpose} | DURATION: ${gv('duration')} | GOVERNING LAW: ${gv('govlaw')}
 CONFIDENTIAL INFO: ${conf.join(', ')||'standard confidential information'}
 ADDITIONAL CLAUSES: ${extra.join('; ')||'none beyond standard terms'}
-Requirements: full NDA with all standard sections (definitions, obligations, exclusions, term, remedies, general), numbered sections, signature blocks. Output ONLY the document. Start with the title.`;
+Requirements: full NDA with all standard sections, numbered sections, signature blocks. Output ONLY the document starting with the title.`;
   document.getElementById('outputPanel').innerHTML=`<div class="loading-state"><div class="spinner"></div><div class="loading-text">Claude is drafting your NDA...</div><div class="loading-steps">Analyzing jurisdiction · Structuring clauses · Applying legal standards</div></div>`;
   try{
     const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,messages:[{role:'user',content:prompt}]})});
@@ -475,37 +492,53 @@ function renderDoc(text,p1,p2){
   let html='',first=true;
   for(const raw of lines){
     const l=raw.trim();
-    if(!l){html+='<p style="margin:4px 0"></p>';continue;}
+    if(!l){html+='<p style="margin:4px 0"></p>';continue}
     if(first&&(l.toUpperCase()===l||l.includes('NON-DISCLOSURE'))){
       html+=`<h1>${l}</h1><div class="meta">Date: ${today}<br>Between: <strong>${p1}</strong> and <strong>${p2}</strong></div>`;
       first=false;continue;
     }
-    if(l===l.toUpperCase()&&l.length>4&&l.length<80&&!l.match(/^\d/)){html+=`<h2>${l}</h2>`;continue;}
-    if(l.match(/^\d+\.\s/)||l.match(/^[a-z]\)\s/i)){html+=`<p style="padding-left:1rem">${l}</p>`;continue;}
+    if(l===l.toUpperCase()&&l.length>4&&l.length<80&&!l.match(/^\d/)){html+=`<h2>${l}</h2>`;continue}
+    if(l.match(/^\d+\.\s/)||l.match(/^[a-z]\)\s/i)){html+=`<p style="padding-left:1rem">${l}</p>`;continue}
     html+=`<p>${l}</p>`;
   }
-  html+=`<div class="sig-row"><div class="sig-block"><div class="sig-line"></div><div class="sig-label">Signature — ${p1}</div><div class="sig-label" style="margin-top:6px">Name: ___________________</div><div class="sig-label">Date: ___________________</div></div><div class="sig-block"><div class="sig-line"></div><div class="sig-label">Signature — ${p2}</div><div class="sig-label" style="margin-top:6px">Name: ___________________</div><div class="sig-label">Date: ___________________</div></div></div>`;
+  html+=`<div class="sig-row">
+    <div class="sig-block"><div class="sig-line"></div><div class="sig-label">Signature — ${p1}</div><div class="sig-label" style="margin-top:6px">Name: ___________________</div><div class="sig-label">Date: ___________________</div></div>
+    <div class="sig-block"><div class="sig-line"></div><div class="sig-label">Signature — ${p2}</div><div class="sig-label" style="margin-top:6px">Name: ___________________</div><div class="sig-label">Date: ___________________</div></div>
+  </div>`;
+
   document.getElementById('outputPanel').innerHTML=`
     <div class="output-header">
       <div class="output-title">NDA — ${p1} & ${p2}</div>
       <div class="output-actions">
         <button class="ob-sec" onclick="window.print()">Print</button>
-        <button class="ob-pri" onclick="copyDoc()">Copy text</button>
+        <button class="ob-pri" onclick="goCheckout('pro')">Unlock to copy</button>
       </div>
     </div>
-    <div class="doc-wrapper" id="docContent">${html}</div>`;
+    <div class="doc-wrapper" id="docContent">
+      ${html}
+      <div class="blur-overlay">
+        <div class="paywall-box">
+          <div class="paywall-title">Your NDA is ready 🎉</div>
+          <div class="paywall-sub">Subscribe to copy, download and save this document.</div>
+          <div class="paywall-price">€29</div>
+          <div class="paywall-period">per month · cancel anytime</div>
+          <div class="paywall-features">
+            <div class="paywall-feature"><span class="ch">✓</span> Copy & download this NDA</div>
+            <div class="paywall-feature"><span class="ch">✓</span> Unlimited documents</div>
+            <div class="paywall-feature"><span class="ch">✓</span> All document types</div>
+            <div class="paywall-feature"><span class="ch">✓</span> PDF export (coming soon)</div>
+          </div>
+          <button class="unlock-btn" onclick="goCheckout('pro')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Unlock for €29/month
+          </button>
+          <div class="secure-note">Secure checkout via LemonSqueezy · Cancel anytime</div>
+        </div>
+      </div>
+    </div>`;
 }
 
-function copyDoc(){
-  const el=document.getElementById('docContent');
-  if(!el)return;
-  navigator.clipboard.writeText(el.innerText).then(()=>{
-    const btn=event.target; btn.textContent='Copied!';
-    setTimeout(()=>btn.textContent='Copy text',2000);
-  });
-}
-
-document.addEventListener('DOMContentLoaded',init);
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
