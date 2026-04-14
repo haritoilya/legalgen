@@ -13,7 +13,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5r
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .nav-cta{padding:8px 18px;background:#f0ede6;color:#0d0d0d;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
 .nav-cta:hover{opacity:.85}
-/* LANDING */
 .hero{text-align:center;padding:6rem 2rem 4rem;max-width:760px;margin:0 auto}
 .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);color:#4ade80;font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;margin-bottom:2rem;letter-spacing:.04em}
 .hero h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:1.5rem}
@@ -86,7 +85,6 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5r
 .bottom-cta h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;letter-spacing:-.03em;margin-bottom:1rem}
 .bottom-cta p{font-size:15px;color:#666;margin-bottom:2rem}
 footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px solid rgba(255,255,255,.05)}
-/* APP */
 #appView{display:none;min-height:calc(100vh - 60px)}
 .app{display:grid;grid-template-columns:400px 1fr;min-height:calc(100vh - 60px)}
 .form-panel{background:#111;border-right:1px solid rgba(255,255,255,.08);padding:2rem;overflow-y:auto;max-height:calc(100vh - 60px)}
@@ -104,7 +102,7 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
 .check-group{display:flex;flex-direction:column;gap:8px}
 .check-item{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#888}
 .check-item input[type=checkbox]{width:15px;height:15px;cursor:pointer;accent-color:#4ade80}
-.gen-btn{width:100%;padding:12px;background:#4ade80;color:#0d0d0d;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px}
+.gen-btn{width:100%;padding:12px;background:#4ade80;color:#0d0d0d;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;display:flex;align-items:center;justify-content:center;gap:8px}
 .gen-btn:hover{opacity:.85}
 .gen-btn:disabled{opacity:.5;cursor:not-allowed}
 .back-btn{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:#666;font-size:13px;cursor:pointer;margin-bottom:1.5rem;padding:0}
@@ -114,26 +112,16 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
 .empty-icon{font-size:48px;opacity:.3}
 .output-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:8px}
 .output-title{font-size:16px;font-weight:600}
-.output-actions{display:flex;gap:8px;flex-wrap:wrap}
+.output-actions{display:flex;gap:8px}
 .ob-sec{padding:7px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px;font-size:12px;font-weight:500;background:transparent;cursor:pointer;color:#f0ede6;transition:background .15s}
 .ob-sec:hover{background:rgba(255,255,255,.07)}
 .ob-pri{padding:7px 14px;border:none;border-radius:8px;font-size:12px;font-weight:600;background:#4ade80;cursor:pointer;color:#0d0d0d;transition:opacity .15s}
 .ob-pri:hover{opacity:.8}
-.ob-save{padding:7px 14px;border:1px solid rgba(74,222,128,.4);border-radius:8px;font-size:12px;font-weight:600;background:transparent;cursor:pointer;color:#4ade80;transition:background .15s}
-.ob-save:hover{background:rgba(74,222,128,.1)}
 .doc-wrapper{background:#1a1a1a;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:2.5rem 3rem;max-width:780px;margin:0 auto;line-height:1.8;font-size:14px;color:#e0ddd6;position:relative}
 .doc-wrapper h1{font-size:20px;font-weight:700;text-align:center;margin-bottom:8px;color:#f0ede6}
 .doc-wrapper h2{font-size:13px;font-weight:700;margin:20px 0 6px;text-transform:uppercase;letter-spacing:.04em;color:#4ade80}
 .doc-wrapper p{margin-bottom:10px;color:#bbb}
 .doc-wrapper .meta{text-align:center;font-size:13px;color:#555;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.1)}
-/* QUALITY SCORE */
-.quality-bar{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem 1.25rem;max-width:780px;margin:0 auto 1rem;display:flex;align-items:center;gap:16px}
-.quality-label{font-size:12px;color:#888;white-space:nowrap}
-.quality-track{flex:1;background:rgba(255,255,255,.08);border-radius:20px;height:8px;overflow:hidden}
-.quality-fill{height:100%;border-radius:20px;transition:width 1s ease}
-.quality-pct{font-size:14px;font-weight:700;min-width:40px;text-align:right}
-.quality-stars{font-size:16px;letter-spacing:2px}
-/* BLUR PAYWALL */
 .blur-overlay{position:absolute;bottom:0;left:0;right:0;height:55%;background:linear-gradient(to bottom,transparent,#1a1a1a 60%);border-radius:0 0 12px 12px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:2.5rem;pointer-events:none}
 .paywall-box{background:rgba(13,13,13,.95);border:1px solid rgba(74,222,128,.3);border-radius:16px;padding:1.75rem 2rem;text-align:center;max-width:360px;width:90%;pointer-events:all;backdrop-filter:blur(4px)}
 .paywall-title{font-size:16px;font-weight:700;margin-bottom:.4rem}
@@ -155,15 +143,6 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
 .sig-block{display:flex;flex-direction:column;gap:4px}
 .sig-line{border-bottom:1px solid #555;height:32px;margin-bottom:4px}
 .sig-label{font-size:12px;color:#555}
-/* SAMPLES */
-.samples-panel{background:#0a0a0a;border-top:1px solid rgba(255,255,255,.07);padding:1rem 2rem}
-.samples-title{font-size:12px;font-weight:600;color:#666;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
-.samples-list{display:flex;gap:8px;flex-wrap:wrap}
-.sample-chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:5px 12px;font-size:12px;color:#aaa;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .15s}
-.sample-chip:hover{border-color:rgba(74,222,128,.4);color:#4ade80}
-.sample-chip .del{color:#555;margin-left:4px;font-size:14px}
-.sample-chip .del:hover{color:#ef4444}
-/* LIVE BADGE */
 .live-badge{position:fixed;bottom:1.5rem;right:1.5rem;background:rgba(20,20,20,.95);border:1px solid rgba(74,222,128,.3);border-radius:12px;padding:10px 16px;font-size:13px;color:#f0ede6;display:flex;align-items:center;gap:8px;z-index:200;backdrop-filter:blur(8px)}
 .live-dot{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:pulse 1.5s infinite}
 @media(max-width:640px){
@@ -178,7 +157,7 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
 
 <nav>
   <div class="logo" onclick="showLanding()"><div class="logo-dot"></div>LegalGen</div>
-  <button class="nav-cta" id="navBtn" onclick="showApp()">Try free — Generate document</button>
+  <button class="nav-cta" id="navBtn" onclick="showApp()">Try free — Generate NDA</button>
 </nav>
 
 <!-- ===== LANDING ===== -->
@@ -187,9 +166,9 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
   <div class="hero">
     <div class="hero-badge">✦ Powered by Claude AI</div>
     <h1>Legal documents<br>in <span>30 seconds.</span><br>Not 30 hours.</h1>
-    <p class="hero-sub">Generate NDAs, freelance contracts, partnership agreements and more — that a lawyer would charge €500 to draft — for €29/month.</p>
+    <p class="hero-sub">Generate NDAs, freelance contracts, and partnership agreements that a lawyer would charge €500 to draft — for €29/month. Tailored to your jurisdiction, your parties, your terms.</p>
     <div class="hero-btns">
-      <button class="btn-main" onclick="showApp()">Generate your document — free</button>
+      <button class="btn-main" onclick="showApp()">Generate your NDA — free</button>
       <button class="btn-ghost" onclick="scrollToSignup()">Join waitlist</button>
     </div>
     <div class="signup-box" id="signupBox">
@@ -203,7 +182,7 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
     <div class="success-box" id="successBox">
       <p>🎉 You're on the list!</p>
       <span>You're #<span id="positionNum">—</span> on the waitlist.</span>
-      <button class="try-btn" onclick="showApp()">Try the generator now →</button>
+      <button class="try-btn" onclick="showApp()">Try the NDA generator now →</button>
     </div>
     <div class="counter-row">
       <div class="counter-avatars">
@@ -213,13 +192,13 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
     </div>
   </div>
   <div class="proof">
-    <div class="proof-label">Document types</div>
+    <div class="proof-label">Designed for</div>
     <div class="proof-logos">
-      <span class="proof-logo">NDA</span><span class="proof-logo" style="color:#222">·</span>
-      <span class="proof-logo">Freelance Contract</span><span class="proof-logo" style="color:#222">·</span>
-      <span class="proof-logo">Partnership Agreement</span><span class="proof-logo" style="color:#222">·</span>
-      <span class="proof-logo">Employment Contract</span><span class="proof-logo" style="color:#222">·</span>
-      <span class="proof-logo">Service Agreement</span>
+      <span class="proof-logo">Freelancers</span><span class="proof-logo" style="color:#222">·</span>
+      <span class="proof-logo">Startups</span><span class="proof-logo" style="color:#222">·</span>
+      <span class="proof-logo">Agencies</span><span class="proof-logo" style="color:#222">·</span>
+      <span class="proof-logo">SMBs</span><span class="proof-logo" style="color:#222">·</span>
+      <span class="proof-logo">HR Teams</span>
     </div>
   </div>
 </section>
@@ -230,9 +209,9 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
     <div class="section-title">From zero to signed in minutes</div>
     <div class="section-sub">Three steps. No lawyer needed.</div>
     <div class="steps">
-      <div class="step"><div class="step-num">1</div><h3>Fill in your details</h3><p>Choose document type, enter parties, purpose, jurisdiction, and clauses. Takes 90 seconds.</p></div>
-      <div class="step"><div class="step-num">2</div><h3>Claude drafts it</h3><p>AI generates a structured, jurisdiction-appropriate document with a quality score in under 30 seconds.</p></div>
-      <div class="step"><div class="step-num">3</div><h3>Save as template</h3><p>Save your best documents as reusable templates. Reuse with 100 clients — change only names and dates.</p></div>
+      <div class="step"><div class="step-num">1</div><h3>Fill in your details</h3><p>Enter parties, purpose, jurisdiction, and clauses. Takes 90 seconds.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Claude drafts it</h3><p>AI generates a professionally structured, jurisdiction-appropriate document in under 30 seconds.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Download & sign</h3><p>Export as PDF. Share with the other party. Your legal protection is in place.</p></div>
     </div>
   </div>
 </section>
@@ -254,8 +233,8 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
         <div class="compare-head"><span class="ch">✓</span> LegalGen</div>
         <div class="compare-item"><span class="ch">✓</span> €29/month unlimited docs</div>
         <div class="compare-item"><span class="ch">✓</span> Ready in 30 seconds</div>
-        <div class="compare-item"><span class="ch">✓</span> Quality score on every doc</div>
-        <div class="compare-item"><span class="ch">✓</span> Save as reusable templates</div>
+        <div class="compare-item"><span class="ch">✓</span> Fully customized</div>
+        <div class="compare-item"><span class="ch">✓</span> Regenerate anytime</div>
         <div class="compare-item"><span class="ch">✓</span> Available 24/7</div>
       </div>
     </div>
@@ -272,10 +251,9 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
         <div class="price-name">Starter</div>
         <div class="price-amount">Free</div>
         <div class="price-period">preview only</div>
-        <div class="price-feature"><span class="ch">✓</span> Generate & preview any doc</div>
-        <div class="price-feature"><span class="ch">✓</span> Quality score</div>
+        <div class="price-feature"><span class="ch">✓</span> Generate & preview NDA</div>
+        <div class="price-feature"><span class="ch">✓</span> See full structure</div>
         <div class="price-feature" style="color:#555">✕ Copy or download</div>
-        <div class="price-feature" style="color:#555">✕ Save templates</div>
         <button class="price-btn" onclick="showApp()">Try now →</button>
       </div>
       <div class="price-card featured">
@@ -285,9 +263,9 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
         <div class="price-period">€17/mo for waitlist members</div>
         <div class="price-feature"><span class="ch">✓</span> Unlimited documents</div>
         <div class="price-feature"><span class="ch">✓</span> All document types</div>
-        <div class="price-feature"><span class="ch">✓</span> Quality score & verification</div>
-        <div class="price-feature"><span class="ch">✓</span> Save unlimited templates</div>
         <div class="price-feature"><span class="ch">✓</span> PDF export</div>
+        <div class="price-feature"><span class="ch">✓</span> Document history</div>
+        <div class="price-feature"><span class="ch">✓</span> Multi-jurisdiction</div>
         <button class="price-btn" onclick="goCheckout('pro')">Get Pro →</button>
       </div>
       <div class="price-card">
@@ -296,7 +274,7 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
         <div class="price-period">per team</div>
         <div class="price-feature"><span class="ch">✓</span> Everything in Pro</div>
         <div class="price-feature"><span class="ch">✓</span> 5 team seats</div>
-        <div class="price-feature"><span class="ch">✓</span> Shared template library</div>
+        <div class="price-feature"><span class="ch">✓</span> Custom branding</div>
         <div class="price-feature"><span class="ch">✓</span> Priority support</div>
         <button class="price-btn" onclick="goCheckout('business')">Get Business</button>
       </div>
@@ -311,8 +289,8 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
     <div style="max-width:620px;margin:0 auto">
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are these documents legally valid? <span class="arrow">▾</span></div><div class="faq-a">LegalGen generates professionally structured documents based on established legal standards. For complex situations, we recommend a qualified lawyer review the final document.</div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Which jurisdictions do you support? <span class="arrow">▾</span></div><div class="faq-a">Netherlands, Germany, UK, France, Belgium, Spain, and US (New York & California). More being added.</div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the quality score? <span class="arrow">▾</span></div><div class="faq-a">After generating your document, our AI evaluates it against standard legal benchmarks for your jurisdiction — checking completeness, clause coverage, and enforceability. It gives you a % score and star rating so you know how solid your document is.</div></div>
-      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do templates work? <span class="arrow">▾</span></div><div class="faq-a">Once you generate a document you're happy with, save it as a template. Next time, load the template and just change the party names, dates, and any specifics. Perfect for companies working with many freelancers.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can I edit the generated document? <span class="arrow">▾</span></div><div class="faq-a">Yes — copy the text and edit in any word processor, or use our built-in editor (coming in Pro).</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Is my data private? <span class="arrow">▾</span></div><div class="faq-a">We don't store document content. Each document is generated on-demand, GDPR-compliant.</div></div>
       <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I cancel my subscription? <span class="arrow">▾</span></div><div class="faq-a">Cancel anytime from your billing portal — no questions asked. You keep access until the end of your billing period.</div></div>
     </div>
   </div>
@@ -321,99 +299,79 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
 <div class="bottom-cta">
   <h2>Stop paying lawyers<br>for simple documents.</h2>
   <p>Join the waitlist and get 40% off for life when we launch.</p>
-  <div class="signup-box" style="margin:0 auto 2rem">
+  <div class="signup-box" style="margin:0 auto">
     <div class="signup-row">
       <input class="signup-input" id="emailInput2" type="email" placeholder="Your email address"/>
       <button class="signup-btn" id="signupBtn2" onclick="joinWaitlist('emailInput2','signupBtn2')">Join waitlist</button>
     </div>
     <div class="privacy-note">No credit card. No spam. Unsubscribe anytime.</div>
   </div>
-  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+  <div style="margin-top:2rem;display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
     <button class="btn-main" onclick="goCheckout('pro')">Get Pro — €29/mo</button>
     <button class="btn-ghost" onclick="goCheckout('business')">Get Business — €99/mo</button>
   </div>
 </div>
+
 <footer>© 2026 LegalGen · legalgen.pro · Not a law firm · AI-generated drafts · Always consult a qualified lawyer for complex matters</footer>
 </div>
 
-<!-- ===== APP ===== -->
+<!-- ===== NDA APP ===== -->
 <div id="appView">
-  <div style="display:flex;flex-direction:column;height:calc(100vh - 60px)">
-    <div class="app" style="flex:1;min-height:0">
-      <div class="form-panel">
-        <button class="back-btn" onclick="showLanding()">← Back to home</button>
-        <div class="panel-title">Generate a legal document</div>
-        <div class="panel-sub">AI drafts a professional, jurisdiction-ready document in seconds.</div>
-
-        <div class="sec"><div class="sec-head">Document type</div>
-          <div class="field">
-            <select id="docType" onchange="updateDocLabel()">
-              <option value="NDA">Non-Disclosure Agreement (NDA)</option>
-              <option value="Freelance Contract">Freelance / Independent Contractor Agreement</option>
-              <option value="Service Agreement">Service Agreement (SMB)</option>
-              <option value="Partnership Agreement">Partnership Agreement</option>
-              <option value="Employment Contract">Employment Contract</option>
-              <option value="Consulting Agreement">Consulting Agreement</option>
-              <option value="Software Development Agreement">Software Development Agreement</option>
-              <option value="Letter of Intent">Letter of Intent (LOI)</option>
-            </select>
-          </div>
+  <div class="app">
+    <div class="form-panel">
+      <button class="back-btn" onclick="showLanding()">← Back to home</button>
+      <div class="panel-title">Generate your NDA</div>
+      <div class="panel-sub">Fill in the details and Claude AI drafts a professional NDA in seconds.</div>
+      <div class="sec"><div class="sec-head">Disclosing Party</div>
+        <div class="field"><label>Full name or company</label><input id="p1name" placeholder="e.g. Acme Corp or John Smith"/></div>
+        <div class="row2">
+          <div class="field"><label>Type</label><select id="p1type"><option>Company</option><option>Individual</option></select></div>
+          <div class="field"><label>Country</label><select id="p1country"><option>Netherlands</option><option>Germany</option><option>United Kingdom</option><option>United States</option><option>France</option><option>Belgium</option><option>Spain</option><option>Other EU</option></select></div>
         </div>
-
-        <div class="sec"><div class="sec-head" id="p1label">Party A (Disclosing)</div>
-          <div class="field"><label>Full name or company</label><input id="p1name" placeholder="e.g. Acme Corp or John Smith"/></div>
-          <div class="row2">
-            <div class="field"><label>Type</label><select id="p1type"><option>Company</option><option>Individual</option></select></div>
-            <div class="field"><label>Country</label><select id="p1country"><option>Netherlands</option><option>Germany</option><option>United Kingdom</option><option>United States</option><option>France</option><option>Belgium</option><option>Spain</option><option>Armenia</option><option>Other EU</option></select></div>
-          </div>
-        </div>
-        <div class="sec"><div class="sec-head" id="p2label">Party B (Receiving)</div>
-          <div class="field"><label>Full name or company</label><input id="p2name" placeholder="e.g. Beta Startup BV or Jane Doe"/></div>
-          <div class="row2">
-            <div class="field"><label>Type</label><select id="p2type"><option>Company</option><option>Individual</option></select></div>
-            <div class="field"><label>Country</label><select id="p2country"><option>Netherlands</option><option>Germany</option><option>United Kingdom</option><option>United States</option><option>France</option><option>Belgium</option><option>Spain</option><option>Armenia</option><option>Other EU</option></select></div>
-          </div>
-        </div>
-
-        <div class="sec"><div class="sec-head">Details</div>
-          <div class="field"><label>Purpose / Scope of work</label><textarea id="purpose" placeholder="e.g. Evaluating a SaaS partnership / Web design project for client website"></textarea></div>
-          <div class="row2">
-            <div class="field"><label>Duration</label><select id="duration"><option>1 year</option><option>2 years</option><option>3 years</option><option>5 years</option><option>Project-based</option><option>Indefinite</option></select></div>
-            <div class="field"><label>Governing law</label><select id="govlaw"><option>Dutch law</option><option>German law</option><option>English law (UK)</option><option>New York law</option><option>California law</option><option>French law</option><option>Belgian law</option><option>Armenian law</option></select></div>
-          </div>
-        </div>
-
-        <div class="sec"><div class="sec-head">Optional clauses</div>
-          <div class="check-group">
-            <label class="check-item"><input type="checkbox" id="c1" checked><span>Confidentiality & trade secrets</span></label>
-            <label class="check-item"><input type="checkbox" id="c2" checked><span>Payment & invoicing terms</span></label>
-            <label class="check-item"><input type="checkbox" id="c3"><span>Intellectual property ownership</span></label>
-            <label class="check-item"><input type="checkbox" id="c4"><span>Non-compete clause</span></label>
-            <label class="check-item"><input type="checkbox" id="c5"><span>Non-solicitation of employees</span></label>
-            <label class="check-item"><input type="checkbox" id="c6"><span>Dispute resolution / arbitration</span></label>
-            <label class="check-item"><input type="checkbox" id="c7"><span>Termination conditions</span></label>
-            <label class="check-item"><input type="checkbox" id="c8"><span>GDPR / data protection</span></label>
-          </div>
-        </div>
-
-        <!-- LOAD SAMPLE -->
-        <div class="sec" id="samplesSection" style="display:none">
-          <div class="sec-head">Your saved templates</div>
-          <div id="samplesList" class="samples-list"></div>
-        </div>
-
-        <button class="gen-btn" id="genBtn" onclick="generateDoc()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-          Generate with Claude AI
-        </button>
       </div>
-
-      <div class="output-panel" id="outputPanel">
-        <div class="empty-state">
-          <div class="empty-icon">📄</div>
-          <div style="font-size:16px;font-weight:500">Your document will appear here</div>
-          <div style="font-size:13px;max-width:300px;line-height:1.6;color:#555">Choose a document type, fill in the form, and click Generate. Claude drafts a professional document in seconds.</div>
+      <div class="sec"><div class="sec-head">Receiving Party</div>
+        <div class="field"><label>Full name or company</label><input id="p2name" placeholder="e.g. Beta Startup BV or Jane Doe"/></div>
+        <div class="row2">
+          <div class="field"><label>Type</label><select id="p2type"><option>Company</option><option>Individual</option></select></div>
+          <div class="field"><label>Country</label><select id="p2country"><option>Netherlands</option><option>Germany</option><option>United Kingdom</option><option>United States</option><option>France</option><option>Belgium</option><option>Spain</option><option>Other EU</option></select></div>
         </div>
+      </div>
+      <div class="sec"><div class="sec-head">Agreement Details</div>
+        <div class="field"><label>Purpose</label><textarea id="purpose" placeholder="e.g. Evaluating a potential SaaS partnership"></textarea></div>
+        <div class="row2">
+          <div class="field"><label>NDA type</label><select id="ndatype"><option>Mutual (both parties)</option><option>One-way (disclosing only)</option></select></div>
+          <div class="field"><label>Duration</label><select id="duration"><option>1 year</option><option>2 years</option><option>3 years</option><option>5 years</option><option>Indefinite</option></select></div>
+        </div>
+        <div class="field"><label>Governing law</label><select id="govlaw"><option>Dutch law (Netherlands)</option><option>German law</option><option>English law (UK)</option><option>New York law (USA)</option><option>California law (USA)</option><option>French law</option><option>Belgian law</option></select></div>
+      </div>
+      <div class="sec"><div class="sec-head">Confidential information includes</div>
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox" id="c1" checked><span>Trade secrets & proprietary technology</span></label>
+          <label class="check-item"><input type="checkbox" id="c2" checked><span>Business plans & financial information</span></label>
+          <label class="check-item"><input type="checkbox" id="c3"><span>Customer & supplier lists</span></label>
+          <label class="check-item"><input type="checkbox" id="c4"><span>Source code & technical data</span></label>
+          <label class="check-item"><input type="checkbox" id="c5"><span>Marketing strategies & pricing</span></label>
+          <label class="check-item"><input type="checkbox" id="c6"><span>Personal data (GDPR-sensitive)</span></label>
+        </div>
+      </div>
+      <div class="sec"><div class="sec-head">Optional clauses</div>
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox" id="x1"><span>Non-solicitation of employees</span></label>
+          <label class="check-item"><input type="checkbox" id="x2"><span>Return/destruction of materials</span></label>
+          <label class="check-item"><input type="checkbox" id="x3"><span>Injunctive relief clause</span></label>
+          <label class="check-item"><input type="checkbox" id="x4"><span>Liquidated damages clause</span></label>
+        </div>
+      </div>
+      <button class="gen-btn" id="genBtn" onclick="generateNDA()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Generate NDA with Claude AI
+      </button>
+    </div>
+    <div class="output-panel" id="outputPanel">
+      <div class="empty-state">
+        <div class="empty-icon">📄</div>
+        <div style="font-size:16px;font-weight:500">Your NDA will appear here</div>
+        <div style="font-size:13px;max-width:280px;line-height:1.6">Fill in the form and click Generate. Claude will create a tailored NDA in seconds.</div>
       </div>
     </div>
   </div>
@@ -427,15 +385,17 @@ footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px s
 
 <script>
 // ============================================================
-// LEMON SQUEEZY — CORRECTED URLs
-// Pro = e967fcd7, Business = 5627f5ea
+// LEMON SQUEEZY CHECKOUT URLS
 // ============================================================
 const LS_URLS = {
   pro:      'https://matrixlab.lemonsqueezy.com/checkout/buy/e967fcd7-0281-4229-ba58-b130040e486e?checkout[discount_code]=LAUNCH40',
   business: 'https://matrixlab.lemonsqueezy.com/checkout/buy/5627f5ea-5d1e-4181-9c88-b075e89b7900?checkout[discount_code]=LAUNCH40'
 };
-function goCheckout(plan){
-  window.open(plan==='business' ? LS_URLS.business : LS_URLS.pro, '_blank');
+
+// Single function used by EVERY payment button in the app
+function goCheckout(plan) {
+  const url = plan === 'business' ? LS_URLS.business : LS_URLS.pro;
+  window.open(url, '_blank');
 }
 
 // ============================================================
@@ -446,51 +406,33 @@ function showApp(){
   document.getElementById('appView').style.display='block';
   document.getElementById('navBtn').textContent='← Back to home';
   document.getElementById('navBtn').onclick=showLanding;
-  loadSamples();
   window.scrollTo(0,0);
 }
 function showLanding(){
   document.getElementById('landingView').style.display='block';
   document.getElementById('appView').style.display='none';
-  document.getElementById('navBtn').textContent='Try free — Generate document';
+  document.getElementById('navBtn').textContent='Try free — Generate NDA';
   document.getElementById('navBtn').onclick=showApp;
   window.scrollTo(0,0);
 }
 
 // ============================================================
-// WAITLIST — FIX: uses shared storage so counter is real
+// WAITLIST
 // ============================================================
-const WL_KEY='legalgen-waitlist-v2';
-async function loadWLData(){
-  try{
-    const r=await window.storage.get(WL_KEY,true); // shared=true → same for all users
-    return r?JSON.parse(r.value):{count:0,emails:[]};
-  }catch(e){return{count:0,emails:[]}}
-}
-async function saveWLData(d){
-  try{await window.storage.set(WL_KEY,JSON.stringify(d),true)}catch(e){}
-}
-function updateCounter(n){
-  document.getElementById('counterDisplay').textContent=n;
-  document.getElementById('badgeCount').textContent=n;
-}
-async function initCounter(){
-  const d=await loadWLData();
-  updateCounter(d.count);
-}
+const STORAGE_KEY='legalgen-waitlist';
+async function loadData(){try{const r=await window.storage.get(STORAGE_KEY,true);return r?JSON.parse(r.value):{count:0,emails:[]}}catch(e){return{count:0,emails:[]}}}
+async function saveData(d){try{await window.storage.set(STORAGE_KEY,JSON.stringify(d),true)}catch(e){}}
+function updateCounter(n){document.getElementById('counterDisplay').textContent=n;document.getElementById('badgeCount').textContent=n}
+async function init(){const d=await loadData();updateCounter(d.count)}
+
 async function joinWaitlist(iid,bid){
   const email=document.getElementById(iid).value.trim();
   if(!email||!email.includes('@')){alert('Please enter a valid email.');return}
-  const btn=document.getElementById(bid);
-  btn.disabled=true;btn.textContent='Joining...';
-  const d=await loadWLData();
-  if(d.emails.includes(email)){
-    alert("You're already on the waitlist!");
-    btn.disabled=false;btn.textContent='Join waitlist';return;
-  }
+  const btn=document.getElementById(bid);btn.disabled=true;btn.textContent='Joining...';
+  const d=await loadData();
+  if(d.emails.includes(email)){alert("You're already on the waitlist!");btn.disabled=false;btn.textContent='Join waitlist';return}
   d.emails.push(email);d.count=d.emails.length;
-  await saveWLData(d);
-  updateCounter(d.count);
+  await saveData(d);updateCounter(d.count);
   document.getElementById(iid).value='';
   document.getElementById('successBox').style.display='block';
   document.getElementById('positionNum').textContent=d.count;
@@ -502,230 +444,73 @@ function scrollToSignup(){document.getElementById('signupBox').scrollIntoView({b
 function toggleFaq(el){el.parentElement.classList.toggle('open')}
 
 // ============================================================
-// SAMPLES / TEMPLATES
-// ============================================================
-const SAMPLES_KEY='legalgen-samples';
-async function loadSamplesData(){
-  try{const r=await window.storage.get(SAMPLES_KEY);return r?JSON.parse(r.value):[]}catch(e){return[]}
-}
-async function saveSamplesData(arr){
-  try{await window.storage.set(SAMPLES_KEY,JSON.stringify(arr))}catch(e){}
-}
-async function loadSamples(){
-  const samples=await loadSamplesData();
-  const sec=document.getElementById('samplesSection');
-  const list=document.getElementById('samplesList');
-  if(!samples.length){sec.style.display='none';return}
-  sec.style.display='block';
-  list.innerHTML=samples.map((s,i)=>`
-    <div class="sample-chip" onclick="loadSample(${i})">
-      📄 ${s.name}
-      <span class="del" onclick="deleteSample(event,${i})">×</span>
-    </div>`).join('');
-}
-async function saveAsSample(){
-  const p1=gv('p1name'),p2=gv('p2name'),docType=gv('docType');
-  if(!p1||!p2){alert('Please generate a document first.');return}
-  const name=prompt(`Name this template:`,`${docType} — ${p1}`);
-  if(!name)return;
-  const samples=await loadSamplesData();
-  samples.push({
-    name,docType,
-    p1name:p1,p1type:gv('p1type'),p1country:gv('p1country'),
-    p2name:gv('p2name'),p2type:gv('p2type'),p2country:gv('p2country'),
-    purpose:gv('purpose'),duration:gv('duration'),govlaw:gv('govlaw'),
-    c1:gc('c1'),c2:gc('c2'),c3:gc('c3'),c4:gc('c4'),
-    c5:gc('c5'),c6:gc('c6'),c7:gc('c7'),c8:gc('c8')
-  });
-  await saveSamplesData(samples);
-  await loadSamples();
-  alert(`✅ Template "${name}" saved! Load it anytime to reuse this document structure.`);
-}
-async function loadSample(i){
-  const samples=await loadSamplesData();
-  const s=samples[i];if(!s)return;
-  document.getElementById('docType').value=s.docType;
-  sv('p1name',s.p1name);sv('p1type',s.p1type);sv('p1country',s.p1country);
-  sv('p2name',s.p2name);sv('p2type',s.p2type);sv('p2country',s.p2country);
-  sv('purpose',s.purpose);sv('duration',s.duration);sv('govlaw',s.govlaw);
-  sc('c1',s.c1);sc('c2',s.c2);sc('c3',s.c3);sc('c4',s.c4);
-  sc('c5',s.c5);sc('c6',s.c6);sc('c7',s.c7);sc('c8',s.c8);
-  updateDocLabel();
-  alert(`Template "${s.name}" loaded! Update the party names and click Generate.`);
-}
-async function deleteSample(e,i){
-  e.stopPropagation();
-  if(!confirm('Delete this template?'))return;
-  const samples=await loadSamplesData();
-  samples.splice(i,1);
-  await saveSamplesData(samples);
-  await loadSamples();
-}
-function sv(id,val){const el=document.getElementById(id);if(el)el.value=val||''}
-function sc(id,val){const el=document.getElementById(id);if(el)el.checked=!!val}
-
-// doc type labels
-function updateDocLabel(){
-  const t=gv('docType');
-  const labels={
-    'NDA':['Disclosing Party','Receiving Party'],
-    'Freelance Contract':['Client','Freelancer / Contractor'],
-    'Service Agreement':['Client','Service Provider'],
-    'Partnership Agreement':['Partner A','Partner B'],
-    'Employment Contract':['Employer','Employee'],
-    'Consulting Agreement':['Client','Consultant'],
-    'Software Development Agreement':['Client','Developer'],
-    'Letter of Intent':['Party A','Party B']
-  };
-  const l=labels[t]||['Party A','Party B'];
-  document.getElementById('p1label').textContent=l[0];
-  document.getElementById('p2label').textContent=l[1];
-}
-
-// ============================================================
-// DOCUMENT GENERATOR
+// NDA GENERATOR
 // ============================================================
 function gv(id){return document.getElementById(id)?.value?.trim()||''}
 function gc(id){return document.getElementById(id)?.checked}
 
-function buildClauses(){
-  const c=[];
-  if(gc('c1'))c.push('confidentiality and protection of trade secrets');
-  if(gc('c2'))c.push('payment terms, invoicing schedule, and late payment penalties');
-  if(gc('c3'))c.push('intellectual property ownership and assignment');
-  if(gc('c4'))c.push('non-compete restrictions');
-  if(gc('c5'))c.push('non-solicitation of employees and clients');
-  if(gc('c6'))c.push('dispute resolution and arbitration procedures');
-  if(gc('c7'))c.push('termination conditions and notice periods');
-  if(gc('c8'))c.push('GDPR and data protection compliance');
-  return c;
-}
-
-async function generateDoc(){
-  const p1=gv('p1name'),p2=gv('p2name'),purpose=gv('purpose'),docType=gv('docType');
-  if(!p1||!p2||!purpose){alert('Please fill in both party names and the purpose/scope.');return}
+async function generateNDA(){
+  const p1=gv('p1name'),p2=gv('p2name'),purpose=gv('purpose');
+  if(!p1||!p2||!purpose){alert('Please fill in both party names and the purpose.');return}
   const btn=document.getElementById('genBtn');
   btn.disabled=true;
   btn.innerHTML='<div style="width:15px;height:15px;border:2px solid rgba(0,0,0,.3);border-top-color:#0d0d0d;border-radius:50%;animation:spin .7s linear infinite"></div> Generating...';
-  const clauses=buildClauses();
-  const prompt=`You are a senior corporate lawyer. Draft a complete, professional ${docType} with the following details:
-
-PARTY A: "${p1}" (${gv('p1type')}, ${gv('p1country')})
-PARTY B: "${p2}" (${gv('p2type')}, ${gv('p2country')})
-PURPOSE/SCOPE: ${purpose}
-DURATION: ${gv('duration')}
-GOVERNING LAW: ${gv('govlaw')}
-CLAUSES TO INCLUDE: ${clauses.length?clauses.join(', '):'standard terms appropriate for this document type'}
-
-Requirements:
-- Write the complete ${docType} in professional legal language
-- Include all standard sections appropriate for this document type
-- Use numbered sections with clear headers in ALL CAPS
-- Include signature blocks at the end
-- Make it appropriate for ${gv('govlaw')}
-- Output ONLY the document text, starting with the document title`;
-
-  document.getElementById('outputPanel').innerHTML=`<div class="loading-state"><div class="spinner"></div><div class="loading-text">Claude is drafting your ${docType}...</div><div class="loading-steps">Analyzing jurisdiction · Structuring clauses · Applying legal standards</div></div>`;
-
+  const conf=[],extra=[];
+  if(gc('c1'))conf.push('trade secrets and proprietary technology');
+  if(gc('c2'))conf.push('business plans and financial information');
+  if(gc('c3'))conf.push('customer and supplier lists');
+  if(gc('c4'))conf.push('source code and technical data');
+  if(gc('c5'))conf.push('marketing strategies and pricing');
+  if(gc('c6'))conf.push('personal data subject to GDPR');
+  if(gc('x1'))extra.push('a non-solicitation of employees clause');
+  if(gc('x2'))extra.push('return or destruction of confidential materials');
+  if(gc('x3'))extra.push('an injunctive relief clause');
+  if(gc('x4'))extra.push('a liquidated damages clause');
+  const prompt=`You are a senior corporate lawyer. Draft a complete, professional Non-Disclosure Agreement:
+PARTIES: "${p1}" (${gv('p1type')}, ${gv('p1country')}) and "${p2}" (${gv('p2type')}, ${gv('p2country')})
+TYPE: ${gv('ndatype')} | PURPOSE: ${purpose} | DURATION: ${gv('duration')} | GOVERNING LAW: ${gv('govlaw')}
+CONFIDENTIAL INFO: ${conf.join(', ')||'standard confidential information'}
+ADDITIONAL CLAUSES: ${extra.join('; ')||'none beyond standard terms'}
+Requirements: full NDA with all standard sections, numbered sections, signature blocks. Output ONLY the document starting with the title.`;
+  document.getElementById('outputPanel').innerHTML=`<div class="loading-state"><div class="spinner"></div><div class="loading-text">Claude is drafting your NDA...</div><div class="loading-steps">Analyzing jurisdiction · Structuring clauses · Applying legal standards</div></div>`;
   try{
-    // BUG FIX 1: Added anthropic-dangerous-direct-browser-access header for CORS
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'anthropic-dangerous-direct-browser-access':'true'
-      },
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:2500,
-        messages:[{role:'user',content:prompt}]
-      })
-    });
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,messages:[{role:'user',content:prompt}]})});
     const data=await res.json();
     if(!res.ok)throw new Error(data.error?.message||'API error');
-    const text=data.content?.map(b=>b.text||'').join('')||'';
-    renderDoc(text,p1,p2,docType);
+    renderDoc(data.content?.map(b=>b.text||'').join('')||'',p1,p2);
   }catch(err){
-    document.getElementById('outputPanel').innerHTML=`<div style="padding:1.5rem"><div class="error-box">❌ Error: ${err.message}<br><br><small>If this persists, check your internet connection and try again.</small></div></div>`;
+    document.getElementById('outputPanel').innerHTML=`<div style="padding:1.5rem"><div class="error-box">Error: ${err.message}</div></div>`;
   }finally{
     btn.disabled=false;
     btn.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Regenerate';
   }
 }
 
-// ============================================================
-// QUALITY SCORE
-// ============================================================
-function calcQuality(text,docType){
-  let score=60;
-  const t=text.toLowerCase();
-  // check for key sections
-  if(t.includes('whereas')||t.includes('recital'))score+=5;
-  if(t.includes('definition'))score+=5;
-  if(t.includes('termination'))score+=5;
-  if(t.includes('governing law')||t.includes('jurisdiction'))score+=5;
-  if(t.includes('signature')||t.includes('signed by'))score+=5;
-  if(t.includes('confidential'))score+=3;
-  if(t.includes('dispute')||t.includes('arbitration'))score+=4;
-  if(t.includes('indemnif'))score+=4;
-  if(t.includes('limitation of liability'))score+=4;
-  if(text.length>2000)score+=5;
-  if(text.length>3500)score+=5;
-  return Math.min(score,98);
-}
-function scoreToStars(s){
-  if(s>=90)return'★★★★★';
-  if(s>=75)return'★★★★☆';
-  if(s>=60)return'★★★☆☆';
-  return'★★☆☆☆';
-}
-function scoreToColor(s){
-  if(s>=85)return'#4ade80';
-  if(s>=70)return'#facc15';
-  return'#fb923c';
-}
-
-// ============================================================
-// RENDER DOCUMENT
-// ============================================================
-function renderDoc(text,p1,p2,docType){
+function renderDoc(text,p1,p2){
   const today=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
-  const score=calcQuality(text,docType);
-  const color=scoreToColor(score);
   const lines=text.split('\n');
   let html='',first=true;
   for(const raw of lines){
     const l=raw.trim();
     if(!l){html+='<p style="margin:4px 0"></p>';continue}
-    if(first){
+    if(first&&(l.toUpperCase()===l||l.includes('NON-DISCLOSURE'))){
       html+=`<h1>${l}</h1><div class="meta">Date: ${today}<br>Between: <strong>${p1}</strong> and <strong>${p2}</strong></div>`;
       first=false;continue;
     }
-    if(l===l.toUpperCase()&&l.length>3&&l.length<80&&!l.match(/^\d/)&&l.replace(/[^A-Z]/g,'').length>3){
-      html+=`<h2>${l}</h2>`;continue;
-    }
-    if(l.match(/^\d+[\.\)]\s/)||l.match(/^[a-z][\.\)]\s/i)){
-      html+=`<p style="padding-left:1rem">${l}</p>`;continue;
-    }
+    if(l===l.toUpperCase()&&l.length>4&&l.length<80&&!l.match(/^\d/)){html+=`<h2>${l}</h2>`;continue}
+    if(l.match(/^\d+\.\s/)||l.match(/^[a-z]\)\s/i)){html+=`<p style="padding-left:1rem">${l}</p>`;continue}
     html+=`<p>${l}</p>`;
   }
   html+=`<div class="sig-row">
-    <div class="sig-block"><div class="sig-line"></div><div class="sig-label">Signature — ${p1}</div><div class="sig-label" style="margin-top:6px">Name: ___________________</div><div class="sig-label">Title: ___________________</div><div class="sig-label">Date: ___________________</div></div>
-    <div class="sig-block"><div class="sig-line"></div><div class="sig-label">Signature — ${p2}</div><div class="sig-label" style="margin-top:6px">Name: ___________________</div><div class="sig-label">Title: ___________________</div><div class="sig-label">Date: ___________________</div></div>
+    <div class="sig-block"><div class="sig-line"></div><div class="sig-label">Signature — ${p1}</div><div class="sig-label" style="margin-top:6px">Name: ___________________</div><div class="sig-label">Date: ___________________</div></div>
+    <div class="sig-block"><div class="sig-line"></div><div class="sig-label">Signature — ${p2}</div><div class="sig-label" style="margin-top:6px">Name: ___________________</div><div class="sig-label">Date: ___________________</div></div>
   </div>`;
 
   document.getElementById('outputPanel').innerHTML=`
-    <div class="quality-bar">
-      <div class="quality-label">Document quality</div>
-      <div class="quality-track"><div class="quality-fill" id="qFill" style="width:0%;background:${color}"></div></div>
-      <div class="quality-pct" style="color:${color}" id="qPct">0%</div>
-      <div class="quality-stars" id="qStars"></div>
-    </div>
     <div class="output-header">
-      <div class="output-title">${docType} — ${p1} & ${p2}</div>
+      <div class="output-title">NDA — ${p1} & ${p2}</div>
       <div class="output-actions">
         <button class="ob-sec" onclick="window.print()">Print</button>
-        <button class="ob-save" onclick="saveAsSample()">💾 Save template</button>
         <button class="ob-pri" onclick="goCheckout('pro')">Unlock to copy</button>
       </div>
     </div>
@@ -733,15 +518,15 @@ function renderDoc(text,p1,p2,docType){
       ${html}
       <div class="blur-overlay">
         <div class="paywall-box">
-          <div class="paywall-title">Your document is ready 🎉</div>
+          <div class="paywall-title">Your NDA is ready 🎉</div>
           <div class="paywall-sub">Subscribe to copy, download and save this document.</div>
           <div class="paywall-price">€29</div>
           <div class="paywall-period">per month · cancel anytime</div>
           <div class="paywall-features">
-            <div class="paywall-feature"><span class="ch">✓</span> Copy & download documents</div>
-            <div class="paywall-feature"><span class="ch">✓</span> All 8 document types</div>
-            <div class="paywall-feature"><span class="ch">✓</span> Save unlimited templates</div>
-            <div class="paywall-feature"><span class="ch">✓</span> Quality score & verification</div>
+            <div class="paywall-feature"><span class="ch">✓</span> Copy & download this NDA</div>
+            <div class="paywall-feature"><span class="ch">✓</span> Unlimited documents</div>
+            <div class="paywall-feature"><span class="ch">✓</span> All document types</div>
+            <div class="paywall-feature"><span class="ch">✓</span> PDF export (coming soon)</div>
           </div>
           <button class="unlock-btn" onclick="goCheckout('pro')">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
@@ -751,25 +536,9 @@ function renderDoc(text,p1,p2,docType){
         </div>
       </div>
     </div>`;
-
-  // Animate quality score
-  setTimeout(()=>{
-    document.getElementById('qFill').style.width=score+'%';
-    document.getElementById('qStars').textContent=scoreToStars(score);
-    let cur=0;
-    const timer=setInterval(()=>{
-      cur=Math.min(cur+2,score);
-      document.getElementById('qPct').textContent=cur+'%';
-      if(cur>=score)clearInterval(timer);
-    },20);
-  },300);
 }
 
-// Init
-document.addEventListener('DOMContentLoaded',()=>{
-  initCounter();
-  updateDocLabel();
-});
+document.addEventListener('DOMContentLoaded', init);
 </script>
 </body>
 </html>
