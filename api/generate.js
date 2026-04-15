@@ -34,7 +34,17 @@ export default async function handler(req, res) {
       body: JSON.stringify(body)
     });
 
-    const data = await response.json();
+    // Handle non-JSON responses (rate limits, server errors return plain text)
+    const rawText = await response.text();
+    let data;
+    try {
+      data = JSON.parse(rawText);
+    } catch(e) {
+      // Anthropic returned plain text — wrap it
+      return res.status(response.status).json({
+        error: { message: rawText || 'Anthropic returned an unexpected response. Please try again.' }
+      });
+    }
     return res.status(response.status).json(data);
 
   } catch (err) {
