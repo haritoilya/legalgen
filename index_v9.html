@@ -4,24 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>LegalGen — Legal Documents in 30 Seconds</title>
-<script>
-  function loadPaddle(){
-    var s=document.createElement('script');
-    s.src='https://cdn.paddle.com/paddle/v2/paddle.js';
-    s.onload=function(){
-      Paddle.Initialize({
-        token:'live_efc652ec72daa8083766148f336',
-        eventCallback:function(e){
-          if(e.name==='checkout.completed'){
-            alert('🎉 Payment successful! Welcome to LegalGen Pro.');
-          }
-        }
-      });
-    };
-    document.head.appendChild(s);
-  }
-  loadPaddle();
-</script>
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d0d0d;color:#f0ede6;min-height:100vh;overflow-x:hidden}
@@ -511,20 +494,28 @@ footer a:hover{color:#f0ede6}
 
 <script>
 // ============================================================
-// PADDLE CONFIG — v2 API
+// PADDLE CONFIG
 // ============================================================
+const PADDLE_TOKEN = 'live_efc652ec72daa8083766148f336';
 const PRICE_IDS = {
   pro:      'pri_01kp95bragsxg0q9jnxdbv334f',
   business: 'pri_01kp95d766bkf54zj07jks4r82'
 };
+let paddleReady = false;
+
+function initPaddle(){
+  if(typeof Paddle === 'undefined'){setTimeout(initPaddle,500);return;}
+  Paddle.Setup({
+    vendor: 0,
+    token: PADDLE_TOKEN
+  });
+  paddleReady = true;
+}
 
 function openCheckout(plan){
-  if(typeof Paddle==='undefined'||!Paddle.Checkout){
-    alert('Payment system is loading, please try again in a moment.');
-    return;
-  }
+  if(typeof Paddle === 'undefined'){alert('Payment system loading, please try again in a moment.');return;}
   Paddle.Checkout.open({
-    items:[{priceId:PRICE_IDS[plan],quantity:1}]
+    items:[{priceId: PRICE_IDS[plan], quantity:1}]
   });
 }
 
@@ -930,6 +921,7 @@ function renderDoc(text,p1,p2,docType){
 
 // Init
 document.addEventListener('DOMContentLoaded',()=>{
+  initPaddle();
   initCounter();
   updateDocLabel();
 });
