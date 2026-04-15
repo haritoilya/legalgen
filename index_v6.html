@@ -504,25 +504,30 @@ const PRICE_IDS = {
 let paddleReady = false;
 
 function initPaddle(){
-  if(typeof Paddle === 'undefined'){setTimeout(initPaddle,500);return;}
-  Paddle.Setup({
-    vendor: 0,
-    token: PADDLE_TOKEN
+  if(typeof Paddle === 'undefined') return;
+  Paddle.Initialize({
+    token: PADDLE_TOKEN,
+    eventCallback: function(e){
+      if(e.name === 'checkout.completed'){
+        alert('🎉 Payment successful! Welcome to LegalGen. Refresh to access your full account.');
+      }
+    }
   });
   paddleReady = true;
 }
 
 function openCheckout(plan){
-  if(typeof Paddle === 'undefined'){alert('Payment system loading, please try again in a moment.');return;}
+  if(!paddleReady){alert('Payment system loading, please try again in a moment.');return;}
   Paddle.Checkout.open({
-    items:[{priceId: PRICE_IDS[plan], quantity:1}]
+    items:[{priceId: PRICE_IDS[plan], quantity:1}],
+    settings:{displayMode:'overlay',theme:'dark',locale:'en'}
   });
 }
 
 // ============================================================
-// ANTHROPIC API — calls our secure Vercel proxy (key stays on server)
+// ANTHROPIC API KEY (company key — users don't need their own)
 // ============================================================
-const API_ENDPOINT = '/api/generate';
+const ANTHROPIC_KEY = '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'; // ← Replace with your real key before deploying
 
 // ============================================================
 // PAGE ROUTER
@@ -552,52 +557,27 @@ function showPage(p){
 }
 
 // ============================================================
-// WAITLIST — JSONBin.io (free, persistent, cross-device, no backend needed)
-// One shared JSON stored at jsonbin.io — all users read/write same counter
+// WAITLIST — uses countapi.xyz (free, persistent, cross-device)
 // ============================================================
-const JSONBIN_BIN_ID = 'CREATE_AT_JSONBIN_IO'; // ← replace after creating bin
-const JSONBIN_KEY    = '$2a$10$CREATE_YOUR_KEY';  // ← replace with your API key
-const JSONBIN_URL    = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+const COUNT_NS  = 'legalgen-pro';
+const COUNT_KEY = 'waitlist-v1';
 
 async function fetchCount(){
   try{
-    const r=await fetch(JSONBIN_URL+'/latest',{
-      headers:{'X-Master-Key':JSONBIN_KEY,'X-Bin-Meta':'false'}
-    });
-    const d=await r.json();
-    return d.count||0;
-  }catch(e){
-    return parseInt(localStorage.getItem('lg_count_cache')||'0');
-  }
+    const r = await fetch(`https://api.countapi.xyz/get/${COUNT_NS}/${COUNT_KEY}`);
+    const d = await r.json();
+    return d.value || 0;
+  }catch(e){return parseInt(localStorage.getItem('lg_wl_fallback')||'0')}
 }
 
-async function incrementCount(email){
+async function incrementCount(){
   try{
-    // Get current data
-    const r1=await fetch(JSONBIN_URL+'/latest',{
-      headers:{'X-Master-Key':JSONBIN_KEY,'X-Bin-Meta':'false'}
-    });
-    const current=await r1.json();
-    const emails=current.emails||[];
-    if(emails.includes(email)) return -1; // already signed up
-    emails.push(email);
-    const newCount=emails.length;
-    // Save back
-    await fetch(JSONBIN_URL,{
-      method:'PUT',
-      headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY},
-      body:JSON.stringify({count:newCount,emails})
-    });
-    localStorage.setItem('lg_count_cache',newCount);
-    return newCount;
+    const r = await fetch(`https://api.countapi.xyz/hit/${COUNT_NS}/${COUNT_KEY}`);
+    const d = await r.json();
+    return d.value || 0;
   }catch(e){
-    // Fallback to local if network fails
-    const joined=JSON.parse(localStorage.getItem('lg_joined')||'[]');
-    if(joined.includes(email)) return -1;
-    joined.push(email);
-    localStorage.setItem('lg_joined',JSON.stringify(joined));
-    const n=(parseInt(localStorage.getItem('lg_count_cache')||'0'))+1;
-    localStorage.setItem('lg_count_cache',n);
+    const n=(parseInt(localStorage.getItem('lg_wl_fallback')||'0'))+1;
+    localStorage.setItem('lg_wl_fallback',n);
     return n;
   }
 }
@@ -608,7 +588,7 @@ function updateCounter(n){
 }
 
 async function initCounter(){
-  const n=await fetchCount();
+  const n = await fetchCount();
   updateCounter(n);
 }
 
@@ -617,15 +597,29 @@ async function joinWaitlist(iid,bid){
   if(!email||!email.includes('@')){alert('Please enter a valid email.');return}
   const btn=document.getElementById(bid);
   btn.disabled=true;btn.textContent='Joining...';
-  const result=await incrementCount(email);
-  if(result===-1){
+  // Check duplicate on this device
+  const joined=JSON.parse(localStorage.getItem('lg_joined')||'[]');
+  if(joined.includes(email)){
     alert("You're already on the waitlist!");
     btn.disabled=false;btn.textContent='Join waitlist';return;
   }
-  updateCounter(result);
+  // Increment shared counter
+  const n = await incrementCount();
+  updateCounter(n);
+  // Save locally to prevent duplicate
+  joined.push(email);
+  localStorage.setItem('lg_joined',JSON.stringify(joined));
+  // Also send to Formspree for email collection
+  try{
+    await fetch('https://formspree.io/f/xkgnpzdo',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify({email,source:'legalgen-waitlist',count:n})
+    });
+  }catch(e){}
   document.getElementById(iid).value='';
   document.getElementById('successBox').style.display='block';
-  document.getElementById('positionNum').textContent=result;
+  document.getElementById('positionNum').textContent=n;
   document.getElementById('signupBox').style.display='none';
   btn.textContent='✓ You\'re in!';
   setTimeout(()=>{btn.disabled=false;btn.textContent='Join waitlist'},3000);
@@ -745,9 +739,14 @@ CRITICAL FORMATTING RULES:
   document.getElementById('outputPanel').innerHTML=`<div class="loading-state"><div class="spinner"></div><div class="loading-text">Claude is drafting your ${docType}...</div><div class="loading-steps">Analyzing jurisdiction · Structuring clauses · Applying legal standards</div></div>`;
 
   try{
-    const res=await fetch(API_ENDPOINT,{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
-      headers:{'Content-Type':'application/json'},
+      headers:{
+        'Content-Type':'application/json',
+        'x-api-key': ANTHROPIC_KEY,
+        'anthropic-version':'2023-06-01',
+        'anthropic-dangerous-direct-browser-access':'true'
+      },
       body:JSON.stringify({
         model:'claude-sonnet-4-20250514',
         max_tokens:2500,
