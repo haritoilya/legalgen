@@ -745,7 +745,7 @@ CRITICAL FORMATTING RULES:
   document.getElementById('outputPanel').innerHTML=`<div class="loading-state"><div class="spinner"></div><div class="loading-text">Claude is drafting your ${docType}...</div><div class="loading-steps">Analyzing jurisdiction · Structuring clauses · Applying legal standards</div></div>`;
 
   try{
-    const res=await fetch('/api/generate',{
+    const res=await fetch(API_ENDPOINT,{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({
@@ -755,10 +755,7 @@ CRITICAL FORMATTING RULES:
       })
     });
     const data=await res.json();
-    if(!res.ok){
-      console.error('Proxy error:', data);
-      throw new Error(data.error?.message||data.error||'Request failed with status '+res.status);
-    }
+    if(!res.ok) throw new Error(data.error?.message||'API error '+res.status);
     const rawText=data.content?.map(b=>b.text||'').join('')||'';
     const cleanText=cleanDocText(rawText);
     window._lastDoc={text:cleanText,p1,p2,docType};
