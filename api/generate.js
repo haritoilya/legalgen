@@ -12,7 +12,7 @@ export default async function handler(req, res) {
 
   res.setHeader('Access-Control-Allow-Origin', '*');
 
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.AI_API_KEY;
   if (!apiKey) {
     return res.status(500).json({ error: 'API key not configured on server' });
   }
