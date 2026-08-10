@@ -33,7 +33,7 @@ export default async function handler(req, res) {
         'Authorization': `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4.5',
+        model: 'claude-sonnet-4-6',
         max_tokens: body.max_tokens || 2500,
         messages: body.messages
       })
