@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LegalGen — Legal Documents in 30 Seconds</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;background:#0d0d0d;color:#f0ede6;min-height:100vh;overflow-x:hidden}
+nav{display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:60px;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;background:rgba(13,13,13,.92);backdrop-filter:blur(12px);z-index:100}
+.logo{font-size:17px;font-weight:700;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;cursor:pointer}
+.logo-dot{width:8px;height:8px;background:#4ade80;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.nav-cta{padding:8px 18px;background:#f0ede6;color:#0d0d0d;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.nav-cta:hover{opacity:.85}
+.hero{text-align:center;padding:6rem 2rem 4rem;max-width:760px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.25);color:#4ade80;font-size:12px;font-weight:600;padding:5px 14px;border-radius:20px;margin-bottom:2rem;letter-spacing:.04em}
+.hero h1{font-size:clamp(2.2rem,6vw,3.8rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;margin-bottom:1.5rem}
+.hero h1 span{background:linear-gradient(135deg,#4ade80,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:1.1rem;color:#888;line-height:1.7;max-width:520px;margin:0 auto 3rem}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-main{padding:14px 28px;background:#4ade80;color:#0d0d0d;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:opacity .15s}
+.btn-main:hover{opacity:.85}
+.btn-ghost{padding:14px 28px;background:transparent;color:#f0ede6;border:1px solid rgba(255,255,255,.2);border-radius:10px;font-size:15px;font-weight:600;cursor:pointer;transition:background .15s}
+.btn-ghost:hover{background:rgba(255,255,255,.06)}
+.signup-box{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:2rem;max-width:480px;margin:0 auto 1.5rem}
+.signup-row{display:flex;gap:10px}
+.signup-input{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:12px 16px;font-size:14px;color:#f0ede6;outline:none;transition:border .15s}
+.signup-input::placeholder{color:#555}
+.signup-input:focus{border-color:rgba(74,222,128,.5)}
+.signup-btn{padding:12px 22px;background:#4ade80;color:#0d0d0d;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;transition:opacity .15s}
+.signup-btn:hover{opacity:.85}
+.signup-btn:disabled{opacity:.5;cursor:not-allowed}
+.privacy-note{font-size:12px;color:#555;margin-top:10px}
+.counter-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:3rem}
+.counter-avatars{display:flex}
+.avatar{width:28px;height:28px;border-radius:50%;border:2px solid #0d0d0d;margin-left:-8px;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:600}
+.avatar:first-child{margin-left:0}
+.a1{background:#4ade80;color:#0d0d0d}.a2{background:#22d3ee;color:#0d0d0d}.a3{background:#f472b6;color:#0d0d0d}.a4{background:#fb923c;color:#0d0d0d}
+.counter-text{font-size:13px;color:#777}
+.counter-text strong{color:#f0ede6}
+.success-box{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);border-radius:12px;padding:1.25rem 1.5rem;max-width:480px;margin:0 auto 1.5rem;display:none;text-align:center}
+.success-box p{font-size:14px;color:#4ade80;font-weight:500}
+.success-box span{font-size:13px;color:#888;display:block;margin-top:4px}
+.success-box .try-btn{margin-top:12px;padding:10px 22px;background:#4ade80;color:#0d0d0d;border:none;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer}
+.proof{text-align:center;padding:1rem 2rem 4rem;max-width:900px;margin:0 auto}
+.proof-label{font-size:11px;color:#555;letter-spacing:.08em;text-transform:uppercase;margin-bottom:1.5rem}
+.proof-logos{display:flex;align-items:center;justify-content:center;gap:2rem;flex-wrap:wrap}
+.proof-logo{font-size:14px;font-weight:700;color:#333}
+.lsection{padding:4rem 2rem;max-width:900px;margin:0 auto}
+.section-tag{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:#4ade80;margin-bottom:1rem;text-align:center}
+.section-title{font-size:clamp(1.6rem,4vw,2.2rem);font-weight:700;text-align:center;letter-spacing:-.02em;margin-bottom:.75rem}
+.section-sub{font-size:15px;color:#666;text-align:center;margin-bottom:3rem;line-height:1.7}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.step{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.5rem}
+.step-num{width:32px;height:32px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#4ade80;margin-bottom:1rem}
+.step h3{font-size:15px;font-weight:600;margin-bottom:.5rem}
+.step p{font-size:13px;color:#666;line-height:1.6}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:1rem}
+.compare-card{border-radius:14px;padding:1.5rem}
+.compare-card.bad{background:rgba(239,68,68,.05);border:1px solid rgba(239,68,68,.15)}
+.compare-card.good{background:rgba(74,222,128,.05);border:1px solid rgba(74,222,128,.2)}
+.compare-head{font-size:14px;font-weight:700;margin-bottom:1rem}
+.compare-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;color:#888;margin-bottom:8px;line-height:1.5}
+.x{color:#ef4444}.ch{color:#4ade80}
+.pricing{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:1rem}
+.price-card{border-radius:16px;padding:1.75rem;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.03)}
+.price-card.featured{border-color:rgba(74,222,128,.4);background:rgba(74,222,128,.06);position:relative}
+.featured-tag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#4ade80;color:#0d0d0d;font-size:11px;font-weight:700;padding:3px 12px;border-radius:20px;white-space:nowrap}
+.price-name{font-size:13px;font-weight:600;color:#888;margin-bottom:.5rem}
+.price-amount{font-size:2rem;font-weight:800;margin-bottom:.25rem;letter-spacing:-.03em}
+.price-period{font-size:12px;color:#555;margin-bottom:1.25rem}
+.price-feature{font-size:13px;color:#777;margin-bottom:7px;display:flex;align-items:center;gap:6px}
+.price-btn{width:100%;padding:10px;border-radius:9px;font-size:13px;font-weight:600;cursor:pointer;margin-top:1.25rem;border:1px solid rgba(255,255,255,.15);background:transparent;color:#f0ede6;transition:all .15s}
+.price-btn:hover{background:rgba(255,255,255,.07)}
+.price-card.featured .price-btn{background:#4ade80;color:#0d0d0d;border:none}
+.price-card.featured .price-btn:hover{opacity:.85}
+.faq-item{border-bottom:1px solid rgba(255,255,255,.07);padding:1.25rem 0}
+.faq-q{font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-a{font-size:13px;color:#666;line-height:1.7;margin-top:.75rem;display:none}
+.faq-item.open .faq-a{display:block}
+.arrow{color:#555;transition:transform .2s}
+.faq-item.open .arrow{transform:rotate(180deg)}
+.bottom-cta{text-align:center;padding:5rem 2rem;border-top:1px solid rgba(255,255,255,.06)}
+.bottom-cta h2{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;letter-spacing:-.03em;margin-bottom:1rem}
+.bottom-cta p{font-size:15px;color:#666;margin-bottom:2rem}
+/* LEGAL PAGES */
+.legal-page{display:none;max-width:760px;margin:0 auto;padding:4rem 2rem}
+.legal-page h1{font-size:2rem;font-weight:800;margin-bottom:.5rem}
+.legal-page .meta{font-size:13px;color:#666;margin-bottom:2rem;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.legal-page h2{font-size:16px;font-weight:600;margin:2rem 0 .75rem;color:#f0ede6}
+.legal-page p{font-size:14px;color:#999;line-height:1.8;margin-bottom:1rem}
+.legal-page ul{padding-left:1.5rem;margin-bottom:1rem}
+.legal-page ul li{font-size:14px;color:#999;line-height:1.8;margin-bottom:.4rem}
+/* FOOTER */
+footer{text-align:center;padding:2rem;font-size:12px;color:#444;border-top:1px solid rgba(255,255,255,.05)}
+footer a{color:#666;text-decoration:none;margin:0 8px;transition:color .15s}
+footer a:hover{color:#f0ede6}
+/* APP */
+#appView{display:none}
+.app{display:grid;grid-template-columns:400px 1fr;min-height:calc(100vh - 60px)}
+.form-panel{background:#111;border-right:1px solid rgba(255,255,255,.08);padding:2rem;overflow-y:auto;max-height:calc(100vh - 60px)}
+.panel-title{font-size:18px;font-weight:600;margin-bottom:4px}
+.panel-sub{font-size:13px;color:#666;margin-bottom:1.5rem;line-height:1.5}
+.sec{margin-bottom:1.5rem}
+.sec-head{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:#555;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,.07)}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:13px;font-weight:500;color:#aaa;margin-bottom:5px}
+.field input,.field select,.field textarea{width:100%;border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:9px 12px;font-size:13px;color:#f0ede6;background:rgba(255,255,255,.05);outline:none;transition:border .15s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(74,222,128,.4)}
+.field select option{background:#1a1a1a;color:#f0ede6}
+.field textarea{resize:vertical;min-height:72px;line-height:1.5}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.check-group{display:flex;flex-direction:column;gap:8px}
+.check-item{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;color:#888}
+.check-item input[type=checkbox]{width:15px;height:15px;cursor:pointer;accent-color:#4ade80}
+.gen-btn{width:100%;padding:12px;background:#4ade80;color:#0d0d0d;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .15s;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:10px}
+.gen-btn:hover{opacity:.85}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed}
+.back-btn{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:#666;font-size:13px;cursor:pointer;margin-bottom:1.5rem;padding:0}
+.back-btn:hover{color:#f0ede6}
+.output-panel{padding:2rem;overflow-y:auto;max-height:calc(100vh - 60px);background:#0d0d0d;position:relative}
+.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:400px;color:#555;text-align:center;gap:12px}
+.empty-icon{font-size:48px;opacity:.3}
+.output-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:8px}
+.output-title{font-size:15px;font-weight:600}
+.output-actions{display:flex;gap:8px;flex-wrap:wrap}
+.ob-sec{padding:7px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px;font-size:12px;font-weight:500;background:transparent;cursor:pointer;color:#f0ede6;transition:background .15s}
+.ob-sec:hover{background:rgba(255,255,255,.07)}
+.ob-pri{padding:7px 14px;border:none;border-radius:8px;font-size:12px;font-weight:600;background:#4ade80;cursor:pointer;color:#0d0d0d;transition:opacity .15s}
+.ob-pri:hover{opacity:.8}
+.ob-save{padding:7px 14px;border:1px solid rgba(74,222,128,.4);border-radius:8px;font-size:12px;font-weight:600;background:transparent;cursor:pointer;color:#4ade80;transition:background .15s}
+.ob-save:hover{background:rgba(74,222,128,.1)}
+.doc-wrapper{background:#1a1a1a;border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:2.5rem 3rem;max-width:780px;margin:0 auto;line-height:1.9;font-size:14px;color:#ccc;position:relative;font-family:Georgia,serif}
+.doc-wrapper .doc-title{font-size:18px;font-weight:700;text-align:center;margin-bottom:8px;color:#f0ede6;font-family:-apple-system,sans-serif;text-transform:uppercase;letter-spacing:.05em}
+.doc-wrapper .doc-meta{text-align:center;font-size:13px;color:#555;margin-bottom:24px;padding-bottom:20px;border-bottom:1px solid rgba(255,255,255,.1);font-family:-apple-system,sans-serif}
+.doc-wrapper .doc-section-title{font-size:13px;font-weight:700;margin:20px 0 8px;text-transform:uppercase;letter-spacing:.04em;color:#4ade80;font-family:-apple-system,sans-serif}
+.doc-wrapper .doc-para{margin-bottom:10px;color:#bbb;text-align:justify}
+.doc-wrapper .doc-numbered{padding-left:1.2rem;margin-bottom:8px;color:#bbb}
+.quality-bar{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:.9rem 1.25rem;max-width:780px;margin:0 auto 1rem;display:flex;align-items:center;gap:14px}
+.quality-label{font-size:12px;color:#888;white-space:nowrap}
+.quality-track{flex:1;background:rgba(255,255,255,.08);border-radius:20px;height:7px;overflow:hidden}
+.quality-fill{height:100%;border-radius:20px;transition:width 1.2s ease}
+.quality-pct{font-size:14px;font-weight:700;min-width:38px;text-align:right}
+.quality-stars{font-size:15px}
+.blur-overlay{position:absolute;bottom:0;left:0;right:0;height:52%;background:linear-gradient(to bottom,transparent,#1a1a1a 55%);border-radius:0 0 12px 12px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:2rem;pointer-events:none}
+.paywall-box{background:rgba(10,10,10,.96);border:1px solid rgba(74,222,128,.3);border-radius:16px;padding:1.5rem 1.75rem;text-align:center;max-width:340px;width:90%;pointer-events:all}
+.paywall-title{font-size:15px;font-weight:700;margin-bottom:.3rem}
+.paywall-sub{font-size:12px;color:#888;margin-bottom:1rem;line-height:1.5}
+.paywall-price{font-size:1.8rem;font-weight:800;color:#4ade80;margin-bottom:.2rem}
+.paywall-period{font-size:11px;color:#555;margin-bottom:1rem}
+.paywall-features{display:flex;flex-direction:column;gap:5px;margin-bottom:1.25rem;text-align:left}
+.paywall-feature{font-size:12px;color:#888;display:flex;align-items:center;gap:5px}
+.unlock-btn{width:100%;padding:12px;background:#4ade80;color:#0d0d0d;border:none;border-radius:10px;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px}
+.unlock-btn:hover{opacity:.85}
+.secure-note{font-size:11px;color:#555;margin-top:7px}
+.loading-state{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:400px;gap:16px}
+.spinner{width:36px;height:36px;border:3px solid rgba(255,255,255,.1);border-top-color:#4ade80;border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loading-text{font-size:14px;color:#666}
+.loading-steps{font-size:12px;color:#444;margin-top:4px}
+.error-box{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:8px;padding:14px 16px;font-size:13px;color:#fca5a5;margin:1rem}
+.samples-list{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.sample-chip{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:5px 10px;font-size:12px;color:#aaa;cursor:pointer;display:flex;align-items:center;gap:5px;transition:all .15s}
+.sample-chip:hover{border-color:rgba(74,222,128,.4);color:#4ade80}
+.del-chip{color:#555;font-size:15px;line-height:1;margin-left:2px}
+.del-chip:hover{color:#ef4444}
+.live-badge{position:fixed;bottom:1.5rem;right:1.5rem;background:rgba(20,20,20,.95);border:1px solid rgba(74,222,128,.3);border-radius:12px;padding:9px 14px;font-size:13px;color:#f0ede6;display:flex;align-items:center;gap:8px;z-index:200}
+.live-dot{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:pulse 1.5s infinite}
+@media print{nav,.form-panel,.blur-overlay,.live-badge,.output-header,.quality-bar{display:none!important}#appView{display:block!important}.app{display:block}.output-panel{max-height:none;padding:0}.doc-wrapper{background:white;color:black;border:none}.doc-wrapper .doc-title,.doc-wrapper .doc-section-title{color:black}.doc-wrapper .doc-para,.doc-wrapper .doc-numbered{color:#333}}
+@media(max-width:640px){.steps,.compare,.pricing{grid-template-columns:1fr}.signup-row{flex-direction:column}.app{grid-template-columns:1fr}.form-panel{max-height:none}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo" onclick="showPage('landing')"><div class="logo-dot"></div>LegalGen</div>
+  <button class="nav-cta" id="navBtn" onclick="showPage('app')">Try free — Generate document</button>
+</nav>
+
+<!-- ===== LANDING ===== -->
+<div id="landingView">
+<section style="padding-top:1rem">
+  <div class="hero">
+    <div class="hero-badge">✦ Powered by AI</div>
+    <h1>Legal documents<br>in <span>30 seconds.</span><br>Not 30 hours.</h1>
+    <p class="hero-sub">Generate NDAs, freelance contracts, partnership agreements and more — that a lawyer would charge €500 to draft — for €29/month.</p>
+    <div class="hero-btns">
+      <button class="btn-main" onclick="showPage('app')">Generate your document — free</button>
+      <button class="btn-ghost" onclick="scrollToSignup()">Join waitlist</button>
+    </div>
+    <div class="signup-box" id="signupBox">
+      <div style="font-size:14px;font-weight:600;margin-bottom:12px;color:#f0ede6">Get early access + 40% off for life</div>
+      <div class="signup-row">
+        <input class="signup-input" id="emailInput" type="email" placeholder="Enter your email address"/>
+        <button class="signup-btn" id="signupBtn" onclick="joinWaitlist('emailInput','signupBtn')">Join waitlist</button>
+      </div>
+      <div class="privacy-note">No credit card. No spam. We'll notify you at launch.</div>
+    </div>
+    <div class="success-box" id="successBox">
+      <p>🎉 You're on the list!</p>
+      <span>You're #<span id="positionNum">—</span> on the waitlist.</span>
+      <button class="try-btn" onclick="showPage('app')">Try the generator now →</button>
+    </div>
+    <div class="counter-row">
+      <div class="counter-avatars">
+        <div class="avatar a1">J</div><div class="avatar a2">M</div><div class="avatar a3">S</div><div class="avatar a4">R</div>
+      </div>
+      <div class="counter-text"><strong id="counterDisplay">—</strong> people already on the waitlist</div>
+    </div>
+  </div>
+  <div class="proof">
+    <div class="proof-label">Document types</div>
+    <div class="proof-logos">
+      <span class="proof-logo">NDA</span><span class="proof-logo" style="color:#222">·</span>
+      <span class="proof-logo">Freelance Contract</span><span class="proof-logo" style="color:#222">·</span>
+      <span class="proof-logo">Partnership Agreement</span><span class="proof-logo" style="color:#222">·</span>
+      <span class="proof-logo">Employment Contract</span><span class="proof-logo" style="color:#222">·</span>
+      <span class="proof-logo">Service Agreement</span>
+    </div>
+  </div>
+</section>
+<section style="border-top:1px solid rgba(255,255,255,.06)">
+  <div class="lsection">
+    <div class="section-tag">How it works</div>
+    <div class="section-title">From zero to signed in minutes</div>
+    <div class="section-sub">Three steps. No lawyer needed.</div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Fill in your details</h3><p>Choose document type, enter parties, purpose, jurisdiction and clauses. Takes 90 seconds.</p></div>
+      <div class="step">      <div class="step-num">2</div><h3>AI drafts it</h3><p>AI generates a structured, jurisdiction-appropriate document with a quality score in seconds.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Download PDF</h3><p>Export a professional PDF. Save as a template to reuse with 100 clients.</p></div>
+    </div>
+  </div>
+</section>
+<section style="border-top:1px solid rgba(255,255,255,.06)">
+  <div class="lsection">
+    <div class="section-tag">Why LegalGen</div>
+    <div class="section-title">Stop overpaying for legal docs</div>
+    <div class="compare">
+      <div class="compare-card bad">
+        <div class="compare-head"><span class="x">✕</span> Traditional lawyer</div>
+        <div class="compare-item"><span class="x">✕</span> €200–500 per document</div>
+        <div class="compare-item"><span class="x">✕</span> 3–5 days turnaround</div>
+        <div class="compare-item"><span class="x">✕</span> Revisions cost extra</div>
+        <div class="compare-item"><span class="x">✕</span> No PDF, no templates</div>
+      </div>
+      <div class="compare-card good">
+        <div class="compare-head"><span class="ch">✓</span> LegalGen</div>
+        <div class="compare-item"><span class="ch">✓</span> €29/month unlimited docs</div>
+        <div class="compare-item"><span class="ch">✓</span> Ready in 30 seconds</div>
+        <div class="compare-item"><span class="ch">✓</span> Quality score & PDF export</div>
+        <div class="compare-item"><span class="ch">✓</span> Reusable templates</div>
+      </div>
+    </div>
+  </div>
+</section>
+<section style="border-top:1px solid rgba(255,255,255,.06)">
+  <div class="lsection">
+    <div class="section-tag">Pricing</div>
+    <div class="section-title">Simple, honest pricing</div>
+    <div class="section-sub">Powered by Dodo Payments — secure checkout, VAT handled automatically.</div>
+    <div class="pricing">
+      <div class="price-card">
+        <div class="price-name">Starter</div>
+        <div class="price-amount">Free</div>
+        <div class="price-period">preview only</div>
+        <div class="price-feature"><span class="ch">✓</span> Generate & preview</div>
+        <div class="price-feature"><span class="ch">✓</span> Quality score</div>
+        <div class="price-feature" style="color:#555">✕ PDF download</div>
+        <div class="price-feature" style="color:#555">✕ Copy full text</div>
+        <button class="price-btn" onclick="showPage('app')">Try now →</button>
+      </div>
+      <div class="price-card featured">
+        <div class="featured-tag">Most popular</div>
+        <div class="price-name">Pro</div>
+        <div class="price-amount">€29<span style="font-size:1rem;font-weight:400;color:#4ade80">/mo</span></div>
+        <div class="price-period">Billed monthly · Cancel anytime</div>
+        <div class="price-feature"><span class="ch">✓</span> Unlimited documents</div>
+        <div class="price-feature"><span class="ch">✓</span> All document types</div>
+        <div class="price-feature"><span class="ch">✓</span> PDF download</div>
+        <div class="price-feature"><span class="ch">✓</span> Save unlimited templates</div>
+        <div class="price-feature"><span class="ch">✓</span> Quality score</div>
+        <button class="price-btn" onclick="openCheckout('pro')">Get Pro →</button>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Business</div>
+        <div class="price-amount">€99<span style="font-size:1rem;font-weight:400;color:#888">/mo</span></div>
+        <div class="price-period">per team · Cancel anytime</div>
+        <div class="price-feature"><span class="ch">✓</span> Everything in Pro</div>
+        <div class="price-feature"><span class="ch">✓</span> 5 team seats</div>
+        <div class="price-feature"><span class="ch">✓</span> Shared template library</div>
+        <div class="price-feature"><span class="ch">✓</span> Priority support</div>
+        <button class="price-btn" onclick="openCheckout('business')">Get Business</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section style="border-top:1px solid rgba(255,255,255,.06)">
+  <div class="lsection">
+    <div class="section-tag">FAQ</div>
+    <div class="section-title">Common questions</div>
+    <div style="max-width:620px;margin:0 auto">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Are these documents legally valid? <span class="arrow">▾</span></div><div class="faq-a">LegalGen generates professionally structured documents based on established legal standards. For complex situations we recommend a qualified lawyer review the final document.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Which jurisdictions do you support? <span class="arrow">▾</span></div><div class="faq-a">Netherlands, Germany, UK, France, Belgium, Spain, Armenia, and US (New York & California). More being added.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What is the quality score? <span class="arrow">▾</span></div><div class="faq-a">After generating your document, AI evaluates it against legal benchmarks — checking completeness, clause coverage, and enforceability. You get a percentage score and star rating.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do templates work? <span class="arrow">▾</span></div><div class="faq-a">Save any generated document as a template. Next time, load it and just change party names and dates. Perfect for companies working with many freelancers.</div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do I cancel? <span class="arrow">▾</span></div><div class="faq-a">Cancel anytime from your Paddle billing portal. No questions asked. You keep access until end of billing period.</div></div>
+    </div>
+  </div>
+</section>
+<div class="bottom-cta">
+  <h2>Stop paying lawyers<br>for simple documents.</h2>
+  <p>Join the waitlist and get 40% off for life.</p>
+  <div class="signup-box" style="margin:0 auto 2rem">
+    <div class="signup-row">
+      <input class="signup-input" id="emailInput2" type="email" placeholder="Your email address"/>
+      <button class="signup-btn" id="signupBtn2" onclick="joinWaitlist('emailInput2','signupBtn2')">Join waitlist</button>
+    </div>
+    <div class="privacy-note">No credit card. No spam. Unsubscribe anytime.</div>
+  </div>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <button class="btn-main" onclick="openCheckout('pro')">Get Pro — €29/mo</button>
+    <button class="btn-ghost" onclick="openCheckout('business')">Get Business — €99/mo</button>
+  </div>
+</div>
+<footer>
+  © 2026 Matrix Lab LLC · legalgen.pro · Not a law firm · AI-generated drafts<br style="margin-bottom:8px">
+  <a onclick="showPage('terms')">Terms & Conditions</a>
+  <a onclick="showPage('privacy')">Privacy Policy</a>
+  <a onclick="showPage('refund')">Refund Policy</a>
+</footer>
+</div>
+
+<!-- ===== APP ===== -->
+<div id="appView">
+  <div class="app">
+    <div class="form-panel">
+      <button class="back-btn" onclick="showPage('landing')">← Back to home</button>
+      <div class="panel-title">Generate a legal document</div>
+      <div class="panel-sub">Claude AI drafts a professional document in seconds — no API key needed.</div>
+      <div class="sec"><div class="sec-head">Document type</div>
+        <div class="field"><select id="docType" onchange="updateDocLabel()">
+          <option value="Non-Disclosure Agreement (NDA)">Non-Disclosure Agreement (NDA)</option>
+          <option value="Freelance / Independent Contractor Agreement">Freelance / Contractor Agreement</option>
+          <option value="Service Agreement">Service Agreement (SMB)</option>
+          <option value="Partnership Agreement">Partnership Agreement</option>
+          <option value="Employment Contract">Employment Contract</option>
+          <option value="Consulting Agreement">Consulting Agreement</option>
+          <option value="Software Development Agreement">Software Development Agreement</option>
+          <option value="Letter of Intent (LOI)">Letter of Intent (LOI)</option>
+        </select></div>
+      </div>
+      <div class="sec"><div class="sec-head" id="p1label">Party A</div>
+        <div class="field"><label>Full name or company</label><input id="p1name" placeholder="e.g. Acme Corp or John Smith"/></div>
+        <div class="row2">
+          <div class="field"><label>Type</label><select id="p1type"><option>Company</option><option>Individual</option></select></div>
+          <div class="field"><label>Country</label><select id="p1country"><option>Netherlands</option><option>Germany</option><option>United Kingdom</option><option>United States</option><option>France</option><option>Belgium</option><option>Spain</option><option>Armenia</option><option>Other EU</option></select></div>
+        </div>
+      </div>
+      <div class="sec"><div class="sec-head" id="p2label">Party B</div>
+        <div class="field"><label>Full name or company</label><input id="p2name" placeholder="e.g. Beta Startup BV or Jane Doe"/></div>
+        <div class="row2">
+          <div class="field"><label>Type</label><select id="p2type"><option>Company</option><option>Individual</option></select></div>
+          <div class="field"><label>Country</label><select id="p2country"><option>Netherlands</option><option>Germany</option><option>United Kingdom</option><option>United States</option><option>France</option><option>Belgium</option><option>Spain</option><option>Armenia</option><option>Other EU</option></select></div>
+        </div>
+      </div>
+      <div class="sec"><div class="sec-head">Details</div>
+        <div class="field"><label>Purpose / Scope of work</label><textarea id="purpose" placeholder="e.g. Evaluating a SaaS partnership / Web design project"></textarea></div>
+        <div class="row2">
+          <div class="field"><label>Duration</label><select id="duration"><option>1 year</option><option>2 years</option><option>3 years</option><option>5 years</option><option>Project-based</option><option>Indefinite</option></select></div>
+          <div class="field"><label>Governing law</label><select id="govlaw"><option>Dutch law</option><option>German law</option><option>English law (UK)</option><option>New York law</option><option>California law</option><option>French law</option><option>Belgian law</option><option>Armenian law</option></select></div>
+        </div>
+      </div>
+      <div class="sec"><div class="sec-head">Optional clauses</div>
+        <div class="check-group">
+          <label class="check-item"><input type="checkbox" id="c1" checked><span>Confidentiality & trade secrets</span></label>
+          <label class="check-item"><input type="checkbox" id="c2" checked><span>Payment & invoicing terms</span></label>
+          <label class="check-item"><input type="checkbox" id="c3"><span>Intellectual property ownership</span></label>
+          <label class="check-item"><input type="checkbox" id="c4"><span>Non-compete clause</span></label>
+          <label class="check-item"><input type="checkbox" id="c5"><span>Non-solicitation</span></label>
+          <label class="check-item"><input type="checkbox" id="c6"><span>Dispute resolution / arbitration</span></label>
+          <label class="check-item"><input type="checkbox" id="c7"><span>Termination conditions</span></label>
+          <label class="check-item"><input type="checkbox" id="c8"><span>GDPR / data protection</span></label>
+        </div>
+      </div>
+      <div class="sec" id="samplesSection" style="display:none">
+        <div class="sec-head">Your saved templates</div>
+        <div class="samples-list" id="samplesList"></div>
+      </div>
+      <button class="gen-btn" id="genBtn" onclick="generateDoc()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Generate with Claude AI
+      </button>
+    </div>
+    <div class="output-panel" id="outputPanel">
+      <div class="empty-state">
+        <div class="empty-icon">📄</div>
+        <div style="font-size:16px;font-weight:500">Your document will appear here</div>
+        <div style="font-size:13px;max-width:300px;line-height:1.6;color:#555">Choose a document type, fill in the form, and click Generate.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== TERMS ===== -->
+<div id="termsView" class="legal-page">
+  <h1>Terms & Conditions</h1>
+  <div class="meta">Matrix Lab LLC · Last updated: April 2026 · legalgen.pro</div>
+  <h2>1. About LegalGen</h2>
+  <p>LegalGen is an AI-powered document generation service operated by Matrix Lab LLC, a company registered in the Republic of Armenia (Registration No. 264.110.1347547, TIN: 54349694), located at 24/17 Vazgen Sargsyan Street, Office 0037, Yerevan, Armenia.</p>
+  <h2>2. Service Description</h2>
+  <p>LegalGen provides AI-generated legal document drafts including NDAs, contracts, service agreements, and other business documents. Documents are generated using Claude AI by Anthropic and are provided as drafts only.</p>
+  <h2>3. Not Legal Advice</h2>
+  <p>LegalGen is not a law firm. The documents generated by our platform do not constitute legal advice. We strongly recommend that all generated documents be reviewed by a qualified legal professional before use, particularly for high-stakes or complex situations.</p>
+  <h2>4. Subscriptions & Billing</h2>
+  <p>Subscriptions are billed monthly through Paddle (our Merchant of Record). By subscribing, you agree to Paddle's terms of service. You may cancel your subscription at any time through your Paddle billing portal.</p>
+  <h2>5. Acceptable Use</h2>
+  <p>You agree not to use LegalGen to generate documents intended for illegal purposes, fraud, or to harm third parties. Matrix Lab LLC reserves the right to terminate accounts that violate these terms.</p>
+  <h2>6. Intellectual Property</h2>
+  <p>Documents generated by LegalGen based on your inputs are owned by you. The LegalGen platform, branding, and underlying technology remain the property of Matrix Lab LLC.</p>
+  <h2>7. Limitation of Liability</h2>
+  <p>Matrix Lab LLC is not liable for any damages arising from the use of AI-generated documents, including but not limited to legal disputes, financial losses, or contractual disagreements. Use of generated documents is entirely at your own risk.</p>
+  <h2>8. Governing Law</h2>
+  <p>These terms are governed by the laws of the Republic of Armenia. Disputes shall be resolved in the courts of Yerevan, Armenia.</p>
+  <h2>9. Contact</h2>
+  <p>For questions about these Terms, contact us at: legal@legalgen.pro</p>
+  <div style="margin-top:2rem"><button class="btn-ghost" onclick="showPage('landing')" style="font-size:13px;padding:10px 20px">← Back to home</button></div>
+</div>
+
+<!-- ===== PRIVACY ===== -->
+<div id="privacyView" class="legal-page">
+  <h1>Privacy Policy</h1>
+  <div class="meta">Matrix Lab LLC · Last updated: April 2026 · legalgen.pro · GDPR Compliant</div>
+  <h2>1. Data Controller</h2>
+  <p>Matrix Lab LLC (Registration No. 264.110.1347547), 24/17 Vazgen Sargsyan Street, Office 0037, Yerevan, Armenia is the data controller for personal data collected through legalgen.pro.</p>
+  <h2>2. Data We Collect</h2>
+  <ul>
+    <li>Email address (when joining the waitlist or subscribing)</li>
+    <li>Document inputs you provide (party names, purposes, jurisdictions)</li>
+    <li>Payment information (processed securely by Paddle — we never store card data)</li>
+    <li>Usage data (pages visited, features used — anonymized)</li>
+  </ul>
+  <h2>3. How We Use Your Data</h2>
+  <ul>
+    <li>To generate and deliver your legal documents</li>
+    <li>To process your subscription payments via Paddle</li>
+    <li>To send service-related emails (receipts, updates)</li>
+    <li>To improve our platform and AI models</li>
+  </ul>
+  <h2>4. Document Content</h2>
+  <p>The content you enter to generate documents (party names, purposes, etc.) is processed by our AI service. We do not permanently store the content of generated documents on our servers. Document content is only used to generate your requested document and is not retained beyond your active session.</p>
+  <h2>5. Data Sharing</h2>
+  <p>We share your data only with: Dodo Payments (payment processing), our AI service provider (document generation — data not retained), and analytics tools (anonymized). We do not sell your personal data to third parties.</p>
+  <h2>6. Your Rights (GDPR)</h2>
+  <p>You have the right to access, correct, delete, or export your personal data. To exercise these rights, contact us at privacy@legalgen.pro. We will respond within 30 days.</p>
+  <h2>7. Data Retention</h2>
+  <p>Email addresses are retained until you unsubscribe or request deletion. Payment records are retained for 7 years as required by law. Generated document content is not retained beyond the active session.</p>
+  <h2>8. Cookies</h2>
+  <p>We use minimal cookies for session management and analytics. We do not use advertising cookies or tracking pixels.</p>
+  <h2>9. Contact</h2>
+  <p>For privacy inquiries: privacy@legalgen.pro</p>
+  <div style="margin-top:2rem"><button class="btn-ghost" onclick="showPage('landing')" style="font-size:13px;padding:10px 20px">← Back to home</button></div>
+</div>
+
+<!-- ===== REFUND ===== -->
+<div id="refundView" class="legal-page">
+  <h1>Refund Policy</h1>
+  <div class="meta">Matrix Lab LLC · Last updated: April 2026 · legalgen.pro</div>
+  <h2>Our Commitment</h2>
+  <p>Matrix Lab LLC wants you to be completely satisfied with LegalGen. We offer a fair and transparent refund policy for all subscriptions processed through Paddle.</p>
+  <h2>14-Day Money-Back Guarantee</h2>
+  <p>If you are not satisfied with LegalGen for any reason, you may request a full refund within 14 days of your initial subscription payment. No questions asked. This applies to first-time purchases only.</p>
+  <h2>How to Request a Refund</h2>
+  <ul>
+    <li>Email us at refunds@legalgen.pro with your registered email and reason</li>
+    <li>Or contact Paddle directly through your billing receipt</li>
+    <li>Refunds are processed within 5-10 business days</li>
+    <li>The refund will be returned to your original payment method</li>
+  </ul>
+  <h2>Subscription Cancellations</h2>
+  <p>You may cancel your subscription at any time through your Paddle customer portal. Cancellations take effect at the end of your current billing period. We do not offer prorated refunds for partial months after the 14-day guarantee period.</p>
+  <h2>Exceptions</h2>
+  <p>Refunds may be declined if there is evidence of abuse, such as requesting multiple refunds across different accounts, or if the service was used extensively before requesting a refund after the 14-day period.</p>
+  <h2>Contact</h2>
+  <p>For refund requests: refunds@legalgen.pro</p>
+  <div style="margin-top:2rem"><button class="btn-ghost" onclick="showPage('landing')" style="font-size:13px;padding:10px 20px">← Back to home</button></div>
+</div>
+
+<div class="live-badge">
+  <div class="live-dot"></div>
+  <span><strong id="badgeCount">—</strong> on waitlist</span>
+</div>
+
+<script>
+// ============================================================
+// DODO PAYMENTS — Checkout URLs
+// Pro:      pdt_0Nd2Wp6nEah0fjZf0yf7U
+// Business: pdt_0Nd2WzJDfXdrGASqgaFuC
+// Discount: LAUNCH40 (dsc_0Nd3GiR3VIVhitZL8YtTY)
+// ============================================================
+const DODO = {
+  pro:      'https://checkout.dodopayments.com/buy/pdt_0Nd2Wp6nEah0fjZf0yf7U?quantity=1&discount_code=LAUNCH40',
+  business: 'https://checkout.dodopayments.com/buy/pdt_0Nd2WzJDfXdrGASqgaFuC?quantity=1&discount_code=LAUNCH40'
+};
+
+function openCheckout(plan){
+  window.open(plan === 'business' ? DODO.business : DODO.pro, '_blank');
+}
+
+// ============================================================
+// ANTHROPIC API — calls our secure Vercel proxy (key stays on server)
+// ============================================================
+const API_ENDPOINT = '/api/generate';
+
+// ============================================================
+// PAGE ROUTER
+// ============================================================
+const pages = {
+  landing:'landingView', app:'appView',
+  terms:'termsView', privacy:'privacyView', refund:'refundView'
+};
+function showPage(p){
+  Object.values(pages).forEach(id=>{
+    const el=document.getElementById(id);
+    if(el) el.style.display='none';
+  });
+  const target=document.getElementById(pages[p]);
+  if(target) target.style.display='block';
+  // Nav button
+  const btn=document.getElementById('navBtn');
+  if(p==='app'){
+    btn.textContent='← Back to home';
+    btn.onclick=()=>showPage('landing');
+    loadSamples();
+  } else {
+    btn.textContent='Try free — Generate document';
+    btn.onclick=()=>showPage('app');
+  }
+  window.scrollTo(0,0);
+}
+
+// ============================================================
+// WAITLIST — JSONBin.io (free, persistent, cross-device, no backend needed)
+// One shared JSON stored at jsonbin.io — all users read/write same counter
+// ============================================================
+const JSONBIN_BIN_ID = 'CREATE_AT_JSONBIN_IO'; // ← replace after creating bin
+const JSONBIN_KEY    = '$2a$10$CREATE_YOUR_KEY';  // ← replace with your API key
+const JSONBIN_URL    = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
+
+async function fetchCount(){
+  try{
+    const r=await fetch(JSONBIN_URL+'/latest',{
+      headers:{'X-Master-Key':JSONBIN_KEY,'X-Bin-Meta':'false'}
+    });
+    const d=await r.json();
+    return d.count||0;
+  }catch(e){
+    return parseInt(localStorage.getItem('lg_count_cache')||'0');
+  }
+}
+
+async function incrementCount(email){
+  try{
+    // Get current data
+    const r1=await fetch(JSONBIN_URL+'/latest',{
+      headers:{'X-Master-Key':JSONBIN_KEY,'X-Bin-Meta':'false'}
+    });
+    const current=await r1.json();
+    const emails=current.emails||[];
+    if(emails.includes(email)) return -1; // already signed up
+    emails.push(email);
+    const newCount=emails.length;
+    // Save back
+    await fetch(JSONBIN_URL,{
+      method:'PUT',
+      headers:{'Content-Type':'application/json','X-Master-Key':JSONBIN_KEY},
+      body:JSON.stringify({count:newCount,emails})
+    });
+    localStorage.setItem('lg_count_cache',newCount);
+    return newCount;
+  }catch(e){
+    // Fallback to local if network fails
+    const joined=JSON.parse(localStorage.getItem('lg_joined')||'[]');
+    if(joined.includes(email)) return -1;
+    joined.push(email);
+    localStorage.setItem('lg_joined',JSON.stringify(joined));
+    const n=(parseInt(localStorage.getItem('lg_count_cache')||'0'))+1;
+    localStorage.setItem('lg_count_cache',n);
+    return n;
+  }
+}
+
+function updateCounter(n){
+  document.getElementById('counterDisplay').textContent=n;
+  document.getElementById('badgeCount').textContent=n;
+}
+
+async function initCounter(){
+  const n=await fetchCount();
+  updateCounter(n);
+}
+
+async function joinWaitlist(iid,bid){
+  const email=document.getElementById(iid).value.trim();
+  if(!email||!email.includes('@')){alert('Please enter a valid email.');return}
+  const btn=document.getElementById(bid);
+  btn.disabled=true;btn.textContent='Joining...';
+  const result=await incrementCount(email);
+  if(result===-1){
+    alert("You're already on the waitlist!");
+    btn.disabled=false;btn.textContent='Join waitlist';return;
+  }
+  updateCounter(result);
+  document.getElementById(iid).value='';
+  document.getElementById('successBox').style.display='block';
+  document.getElementById('positionNum').textContent=result;
+  document.getElementById('signupBox').style.display='none';
+  btn.textContent='✓ You\'re in!';
+  setTimeout(()=>{btn.disabled=false;btn.textContent='Join waitlist'},3000);
+}
+
+function scrollToSignup(){document.getElementById('signupBox').scrollIntoView({behavior:'smooth',block:'center'})}
+function toggleFaq(el){el.parentElement.classList.toggle('open')}
+
+// ============================================================
+// TEMPLATES
+// ============================================================
+function getSamples(){return JSON.parse(localStorage.getItem('lg_samples')||'[]')}
+function setSamples(a){localStorage.setItem('lg_samples',JSON.stringify(a))}
+function loadSamples(){
+  const s=getSamples(),sec=document.getElementById('samplesSection'),list=document.getElementById('samplesList');
+  if(!s.length){sec.style.display='none';return}
+  sec.style.display='block';
+  list.innerHTML=s.map((x,i)=>`<div class="sample-chip" onclick="loadSample(${i})">📄 ${x.name}<span class="del-chip" onclick="delSample(event,${i})">×</span></div>`).join('');
+}
+function saveAsSample(){
+  const p1=gv('p1name');if(!p1){alert('Generate a document first.');return}
+  const name=prompt('Name this template:',gv('docType')+' — '+p1);if(!name)return;
+  const s=getSamples();
+  s.push({name,docType:gv('docType'),p1name:gv('p1name'),p1type:gv('p1type'),p1country:gv('p1country'),
+    p2name:gv('p2name'),p2type:gv('p2type'),p2country:gv('p2country'),
+    purpose:gv('purpose'),duration:gv('duration'),govlaw:gv('govlaw'),
+    c1:gc('c1'),c2:gc('c2'),c3:gc('c3'),c4:gc('c4'),c5:gc('c5'),c6:gc('c6'),c7:gc('c7'),c8:gc('c8')});
+  setSamples(s);loadSamples();
+  alert(`Template "${name}" saved!`);
+}
+function loadSample(i){
+  const s=getSamples()[i];if(!s)return;
+  sv('docType',s.docType);sv('p1name',s.p1name);sv('p1type',s.p1type);sv('p1country',s.p1country);
+  sv('p2name',s.p2name);sv('p2type',s.p2type);sv('p2country',s.p2country);
+  sv('purpose',s.purpose);sv('duration',s.duration);sv('govlaw',s.govlaw);
+  sc('c1',s.c1);sc('c2',s.c2);sc('c3',s.c3);sc('c4',s.c4);
+  sc('c5',s.c5);sc('c6',s.c6);sc('c7',s.c7);sc('c8',s.c8);
+  updateDocLabel();
+}
+function delSample(e,i){
+  e.stopPropagation();if(!confirm('Delete this template?'))return;
+  const s=getSamples();s.splice(i,1);setSamples(s);loadSamples();
+}
+function sv(id,v){const e=document.getElementById(id);if(e)e.value=v||''}
+function sc(id,v){const e=document.getElementById(id);if(e)e.checked=!!v}
+function gv(id){return document.getElementById(id)?.value?.trim()||''}
+function gc(id){return document.getElementById(id)?.checked}
+function updateDocLabel(){
+  const t=gv('docType');
+  const m={
+    'Non-Disclosure Agreement (NDA)':['Disclosing Party','Receiving Party'],
+    'Freelance / Independent Contractor Agreement':['Client','Freelancer / Contractor'],
+    'Service Agreement':['Client','Service Provider'],
+    'Partnership Agreement':['Partner A','Partner B'],
+    'Employment Contract':['Employer','Employee'],
+    'Consulting Agreement':['Client','Consultant'],
+    'Software Development Agreement':['Client','Developer'],
+    'Letter of Intent (LOI)':['Party A','Party B']
+  };
+  const l=m[t]||['Party A','Party B'];
+  document.getElementById('p1label').textContent=l[0];
+  document.getElementById('p2label').textContent=l[1];
+}
+
+// ============================================================
+// CLEAN TEXT — strip markdown symbols
+// ============================================================
+function cleanDocText(text){
+  return text
+    .replace(/\*\*(.+?)\*\*/g,'$1')   // bold **text**
+    .replace(/\*(.+?)\*/g,'$1')        // italic *text*
+    .replace(/#{1,6}\s*/g,'')          // headers ##
+    .replace(/_{2}(.+?)_{2}/g,'$1')    // __bold__
+    .replace(/`(.+?)`/g,'$1')          // `code`
+    .replace(/^\s*[-•]\s/gm,'')        // bullet points
+    .replace(/\r\n/g,'\n')
+    .trim();
+}
+
+// ============================================================
+// GENERATE DOCUMENT
+// ============================================================
+async function generateDoc(){
+  const p1=gv('p1name'),p2=gv('p2name'),purpose=gv('purpose'),docType=gv('docType');
+  if(!p1||!p2||!purpose){alert('Please fill in both party names and the purpose/scope.');return}
+  const btn=document.getElementById('genBtn');
+  btn.disabled=true;
+  btn.innerHTML='<div style="width:15px;height:15px;border:2px solid rgba(0,0,0,.3);border-top-color:#0d0d0d;border-radius:50%;animation:spin .7s linear infinite"></div> Generating...';
+  const clauses=[];
+  if(gc('c1'))clauses.push('confidentiality and trade secret protection');
+  if(gc('c2'))clauses.push('payment terms, invoicing and late payment penalties');
+  if(gc('c3'))clauses.push('intellectual property ownership and assignment');
+  if(gc('c4'))clauses.push('non-compete restrictions');
+  if(gc('c5'))clauses.push('non-solicitation of employees and clients');
+  if(gc('c6'))clauses.push('dispute resolution and arbitration');
+  if(gc('c7'))clauses.push('termination conditions and notice periods');
+  if(gc('c8'))clauses.push('GDPR and data protection compliance');
+
+  const prompt=`You are a senior corporate lawyer. Draft a complete, professional ${docType}.
+
+PARTY A: "${p1}" (${gv('p1type')}, ${gv('p1country')})
+PARTY B: "${p2}" (${gv('p2type')}, ${gv('p2country')})
+PURPOSE: ${purpose}
+DURATION: ${gv('duration')}
+GOVERNING LAW: ${gv('govlaw')}
+CLAUSES TO INCLUDE: ${clauses.length?clauses.join(', '):'standard terms appropriate for this document type'}
+
+CRITICAL FORMATTING RULES:
+- Output plain text only. No markdown symbols whatsoever.
+- Do NOT use asterisks (*), double asterisks (**), hash symbols (#), underscores (_), or backticks.
+- Section titles should be written in PLAIN CAPITAL LETTERS followed by a colon or newline, not markdown headers.
+- Write numbered sections as: 1. Title, 2. Title, etc.
+- Write the complete legal document starting directly with the document title in plain capitals.
+- Include all standard sections, numbered clauses, and signature blocks.
+- Signature block should use lines of underscores like: _______________________`;
+
+  document.getElementById('outputPanel').innerHTML=`<div class="loading-state"><div class="spinner"></div><div class="loading-text">AI is drafting your ${docType}...</div><div class="loading-steps">Analyzing jurisdiction · Structuring clauses · Applying legal standards</div></div>`;
+
+  try{
+    const res=await fetch('/api/generate',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-6',
+        max_tokens:2500,
+        messages:[{role:'user',content:prompt}]
+      })
+    });
+    const data=await res.json();
+    if(!res.ok){
+      console.error('Proxy error:', data);
+      throw new Error(data.error?.message||data.error||'Request failed with status '+res.status);
+    }
+    const rawText=data.content?.map(b=>b.text||'').join('')||'';
+    const cleanText=cleanDocText(rawText);
+    window._lastDoc={text:cleanText,p1,p2,docType};
+    renderDoc(cleanText,p1,p2,docType);
+  }catch(err){
+    document.getElementById('outputPanel').innerHTML=`
+      <div class="error-box">
+        <div style="font-weight:600;margin-bottom:6px">Something went wrong</div>
+        <div style="font-size:12px;opacity:.8;margin-bottom:12px">${err.message}</div>
+        <button onclick="generateDoc()" style="padding:7px 16px;background:#4ade80;color:#0d0d0d;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer">Try again</button>
+      </div>`;
+  }finally{
+    btn.disabled=false;
+    btn.innerHTML='<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Regenerate';
+  }
+}
+
+// ============================================================
+// QUALITY SCORE
+// ============================================================
+function calcScore(text){
+  let s=58;const t=text.toLowerCase();
+  if(t.includes('definition'))s+=5;
+  if(t.includes('termination'))s+=5;
+  if(t.includes('governing law')||t.includes('jurisdiction'))s+=5;
+  if(t.includes('confidential'))s+=4;
+  if(t.includes('indemnif'))s+=4;
+  if(t.includes('limitation of liability'))s+=4;
+  if(t.includes('dispute')||t.includes('arbitration'))s+=4;
+  if(t.includes('whereas')||t.includes('recital'))s+=3;
+  if(text.length>2000)s+=4;
+  if(text.length>3500)s+=4;
+  return Math.min(s,97);
+}
+function scoreColor(s){return s>=85?'#4ade80':s>=70?'#facc15':'#fb923c'}
+function scoreStars(s){return s>=90?'★★★★★':s>=75?'★★★★☆':s>=60?'★★★☆☆':'★★☆☆☆'}
+
+// ============================================================
+// PDF
+// ============================================================
+function downloadPDF(){
+  const d=window._lastDoc;
+  if(!d){alert('Generate a document first.');return}
+  const content=document.getElementById('docContent');
+  const clone=content.cloneNode(true);
+  const overlay=clone.querySelector('.blur-overlay');
+  if(overlay)overlay.remove();
+  const win=window.open('','_blank');
+  win.document.write(`<!DOCTYPE html><html><head><title>${d.docType}</title>
+  <style>body{font-family:Georgia,serif;margin:3cm 2.5cm;color:#111;line-height:1.9;font-size:12pt}
+  .doc-title{font-size:16pt;text-align:center;margin-bottom:8px;text-transform:uppercase;letter-spacing:.05em;font-family:Arial,sans-serif}
+  .doc-meta{text-align:center;font-size:10pt;color:#555;margin-bottom:24px;padding-bottom:16px;border-bottom:2px solid #111;font-family:Arial,sans-serif}
+  .doc-section-title{font-size:11pt;margin:20px 0 6px;text-transform:uppercase;font-weight:bold;font-family:Arial,sans-serif}
+  .doc-para{margin-bottom:10px;text-align:justify}
+  .doc-numbered{padding-left:1.2rem;margin-bottom:8px}
+  .sig-row{display:grid;grid-template-columns:1fr 1fr;gap:3cm;margin-top:2cm;padding-top:1cm;border-top:1px solid #ccc}
+  .sig-line{border-bottom:1px solid #333;height:2cm;margin-bottom:6px}
+  .sig-label{font-size:9pt;color:#666;font-family:Arial,sans-serif}</style>
+  </head><body>${clone.innerHTML}</body></html>`);
+  win.document.close();
+  setTimeout(()=>win.print(),500);
+}
+
+// ============================================================
+// RENDER DOCUMENT
+// ============================================================
+function renderDoc(text,p1,p2,docType){
+  const today=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  const score=calcScore(text);const col=scoreColor(score);
+  const lines=text.split('\n');
+  let html='',first=true;
+
+  for(const raw of lines){
+    const l=raw.trim();
+    if(!l){html+='<div style="height:8px"></div>';continue}
+    // First line = document title
+    if(first){
+      html+=`<div class="doc-title">${l}</div><div class="doc-meta">Date: ${today} &nbsp;|&nbsp; Between: ${p1} and ${p2}</div>`;
+      first=false;continue;
+    }
+    // Section headers — ALL CAPS lines
+    if(l===l.toUpperCase()&&l.length>3&&l.length<100&&l.replace(/[^A-Z0-9 \.\-]/g,'').trim().length>3&&!l.match(/^[\d\s]+$/)){
+      html+=`<div class="doc-section-title">${l}</div>`;continue;
+    }
+    // Numbered lines
+    if(l.match(/^\d+[\.\)]\s/)||l.match(/^[a-z][\.\)]\s/i)){
+      html+=`<div class="doc-numbered">${l}</div>`;continue;
+    }
+    // Signature lines
+    if(l.includes('_______')||l.toLowerCase().includes('signature')||l.toLowerCase().includes('signed by')){
+      html+=`<div class="sig-label" style="margin-top:8px">${l}</div>`;continue;
+    }
+    html+=`<div class="doc-para">${l}</div>`;
+  }
+
+  // Signature block
+  html+=`<div class="sig-row" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.1)">
+    <div><div class="sig-line" style="border-bottom:1px solid #555;height:2rem;margin-bottom:6px"></div>
+      <div class="sig-label">Signature — ${p1}</div>
+      <div class="sig-label" style="margin-top:5px">Name: _______________________</div>
+      <div class="sig-label">Title: _______________________</div>
+      <div class="sig-label">Date: _______________________</div>
+    </div>
+    <div><div class="sig-line" style="border-bottom:1px solid #555;height:2rem;margin-bottom:6px"></div>
+      <div class="sig-label">Signature — ${p2}</div>
+      <div class="sig-label" style="margin-top:5px">Name: _______________________</div>
+      <div class="sig-label">Title: _______________________</div>
+      <div class="sig-label">Date: _______________________</div>
+    </div>
+  </div>`;
+
+  document.getElementById('outputPanel').innerHTML=`
+    <div class="quality-bar">
+      <div class="quality-label">Document quality</div>
+      <div class="quality-track"><div class="quality-fill" id="qFill" style="width:0%;background:${col}"></div></div>
+      <div class="quality-pct" id="qPct" style="color:${col}">0%</div>
+      <div class="quality-stars" id="qStars"></div>
+    </div>
+    <div class="output-header">
+      <div class="output-title">${docType} — ${p1} & ${p2}</div>
+      <div class="output-actions">
+        <button class="ob-save" onclick="saveAsSample()">💾 Save template</button>
+        <button class="ob-sec" onclick="downloadPDF()">📄 Download PDF</button>
+        <button class="ob-pri" onclick="openCheckout('pro')">Unlock full access</button>
+      </div>
+    </div>
+    <div class="doc-wrapper" id="docContent">
+      ${html}
+      <div class="blur-overlay">
+        <div class="paywall-box">
+          <div class="paywall-title">Your document is ready 🎉</div>
+          <div class="paywall-sub">Subscribe to download PDF and copy the full text.</div>
+          <div class="paywall-price">€29</div>
+          <div class="paywall-period">per month · cancel anytime</div>
+          <div class="paywall-features">
+            <div class="paywall-feature"><span class="ch">✓</span> Download PDF</div>
+            <div class="paywall-feature"><span class="ch">✓</span> Copy full text</div>
+            <div class="paywall-feature"><span class="ch">✓</span> All 8 document types</div>
+            <div class="paywall-feature"><span class="ch">✓</span> Save unlimited templates</div>
+          </div>
+          <button class="unlock-btn" onclick="openCheckout('pro')">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Unlock for €29/month
+          </button>
+          <div class="secure-note">Secure checkout via Dodo Payments · Cancel anytime</div>
+        </div>
+      </div>
+    </div>`;
+
+  setTimeout(()=>{
+    document.getElementById('qFill').style.width=score+'%';
+    document.getElementById('qStars').textContent=scoreStars(score);
+    let c=0;const t=setInterval(()=>{
+      c=Math.min(c+2,score);
+      document.getElementById('qPct').textContent=c+'%';
+      if(c>=score)clearInterval(t);
+    },18);
+  },300);
+}
+
+// Init
+document.addEventListener('DOMContentLoaded',()=>{
+  initCounter();
+  updateDocLabel();
+});
+</script>
+</body>
+</html>
