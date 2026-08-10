@@ -18,33 +18,50 @@ export default async function handler(req, res) {
   }
 
   try {
-    // FIX: parse body correctly — Vercel may send it as string or object
     let body = req.body;
     if (typeof body === 'string') {
       body = JSON.parse(body);
     }
 
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    // AnyModel.org uses OpenAI-compatible format:
+    // - Base URL: https://anymodel.org/v1
+    // - Auth header: Authorization: Bearer YOUR_KEY
+    // - Messages format: OpenAI chat completions
+    const response = await fetch('https://anymodel.org/v1/chat/completions', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01'
+        'Authorization': `Bearer ${apiKey}`
       },
-      body: JSON.stringify(body)
+      body: JSON.stringify({
+        model: body.model || 'claude-sonnet-4-6', // use model from request or default
+        max_tokens: body.max_tokens || 2500,
+        messages: body.messages
+      })
     });
 
-    // Handle non-JSON responses (rate limits, server errors return plain text)
     const rawText = await response.text();
     let data;
     try {
       data = JSON.parse(rawText);
-    } catch(e) {
-      // Anthropic returned plain text — wrap it
+    } catch (e) {
       return res.status(response.status).json({
-        error: { message: rawText || 'Anthropic returned an unexpected response. Please try again.' }
+        error: { message: rawText || 'Unexpected response from AI service' }
       });
     }
+
+    // AnyModel returns OpenAI format — convert to Anthropic format
+    // so index.html doesn't need changes
+    if (data.choices && data.choices[0]) {
+      const converted = {
+        content: [{ type: 'text', text: data.choices[0].message.content }],
+        model: data.model,
+        type: 'message',
+        role: 'assistant'
+      };
+      return res.status(200).json(converted);
+    }
+
     return res.status(response.status).json(data);
 
   } catch (err) {
