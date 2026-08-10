@@ -19,14 +19,13 @@ export default async function handler(req, res) {
 
   try {
     let body = req.body;
-    if (typeof body === 'string') {
-      body = JSON.parse(body);
-    }
+    if (typeof body === 'string') body = JSON.parse(body);
 
-    // AnyModel.org uses OpenAI-compatible format:
-    // - Base URL: https://anymodel.org/v1
-    // - Auth header: Authorization: Bearer YOUR_KEY
-    // - Messages format: OpenAI chat completions
+    // AnyModel.org configuration:
+    // Base URL:  https://anymodel.org/v1
+    // Endpoint:  /chat/completions  (OpenAI-compatible)
+    // Auth:      Authorization: Bearer YOUR_KEY
+    // Model:     claude-sonnet-4.5
     const response = await fetch('https://anymodel.org/v1/chat/completions', {
       method: 'POST',
       headers: {
@@ -50,16 +49,15 @@ export default async function handler(req, res) {
       });
     }
 
-    // AnyModel returns OpenAI format — convert to Anthropic format
-    // so index.html doesn't need changes
+    // Convert OpenAI response format → Anthropic format
+    // so index.html needs zero changes
     if (data.choices && data.choices[0]) {
-      const converted = {
+      return res.status(200).json({
         content: [{ type: 'text', text: data.choices[0].message.content }],
         model: data.model,
         type: 'message',
         role: 'assistant'
-      };
-      return res.status(200).json(converted);
+      });
     }
 
     return res.status(response.status).json(data);
